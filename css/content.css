@@ -1,0 +1,14 @@
+.contentBox {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+div.content {
+    margin-left: 23%;
+    padding: 10px 16px;
+    height: 1000px;
+}
+
+.margin-right{
+    float: right;
+}

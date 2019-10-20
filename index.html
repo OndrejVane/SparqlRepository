@@ -9,12 +9,129 @@
         <link rel="stylesheet" type="text/css" href="./dependency/bootstrap-4.3.1-dist/css/bootstrap.min.css">
         <script type="text/javascript" src="dependency/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
+        <!-- Own styles include -->
+        <link rel="stylesheet" type="text/css" href="./css/sidebar.css">
+        <link rel="stylesheet" type="text/css" href="./css/content.css">
+
     </head>
 
     <body>
 
-        <h1>This is a Heading</h1>
-        <p>This is a paragraph.</p>
+    <!-- Search box -->
+    <div class="search-box">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search sparql query" aria-label="Search sparql query" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">Search</button>
+            </div>
+        </div>
+    </div>
+    <!-- ./Search box -->
 
+    <!-- Side menu -->
+
+    <div class="side-list">
+        <!--
+        <a href="#news">
+            <div>
+                <label>Name:</label>
+                <label>Sparql query</label>
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div>
+                <label>Description:</label>
+                <label>Sparql query</label>
+            </div>
+            <div>
+                <label>Tags:</label>
+                <label>Sparql query</label>
+            </div>
+        </a>
+
+        <a href="#news">
+            <div>
+                <label>Name:</label>
+                <label>Sparql query</label>
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div>
+                <label>Name:</label>
+                <label>Sparql query</label>
+            </div>
+            <div>
+                <label>Name:</label>
+                <label>Sparql query</label>
+            </div>
+        </a>
+        -->
+        <a href="#news">Query 1</a>
+        <a href="#news">Query 2</a>
+        <a href="#news">Query 3</a>
+        <a href="#news">Query 4</a>
+        <a href="#news">Query 5</a>
+        <a href="#news">Query 6</a>
+        <a href="#news">Query 7</a>
+        <a href="#news">Query 8</a>
+        <a href="#news">Query 9</a>
+        <a href="#news">Query 10</a>
+        <a href="#news">Query 11</a>
+        <a href="#news">Query 12</a>
+        <a href="#news">Query 13</a>
+        <a href="#news">Query 14</a>
+        <a href="#news">Query 15</a>
+    </div>
+    <!-- ./Sidebar menu -->
+
+    <!-- Content -->
+    <div class="content">
+        <div class="card">
+            <div class="card-header">
+                Query Window
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Name:</h5>
+                <h5 class="card-title">Description:</h5>
+                <h5 class="card-title">Tags:</h5>
+                <form>
+                    <div class="form-group">
+                        <label>Endpoint URL</label>
+                        <input class="form-control" placeholder="http://localhost:3030/dataset">
+                    </div>
+                    <div class="form-group">
+                        <label>Sparql query</label>
+                        <textarea class="form-control" id="sparqlQuery" name="sparqlQuery" rows="15">
+prefix ds:    <http://mre.zcu.cz/ontology/dasta.owl#>
+prefix id:    <http://mre.zcu.cz/id/>
+
+SELECT *
+WHERE {
+  ?s1 ?p1 ?s2 .
+  ?s2 ?p2 ?s3 .
+  OPTIONAL {
+    GRAPH ?g {
+      ?s3 ?p3 ?s4
+      OPTIONAL {
+        ?s4 ?p4 ?o
+      }
+    }
+  }
+}
+			            </textarea>
+                    </div>
+                </form>
+                <a href="#!" class="btn btn-primary">Save</a>
+                <a href="#!" class="btn btn-primary">Save as new</a>
+                <a href="#!" class="btn btn-primary">Edit</a>
+                <a href="#!" class="btn btn-outline-primary">&lt&lt Previous</a>
+                <a href="#!" class="btn btn-outline-primary">Next &gt&gt</a>
+                <a href="#!" class="btn btn-success margin-right">Send query</a>
+            </div>
+        </div>
+    </div>
+    <!-- ./Content -->
     </body>
 </html>
