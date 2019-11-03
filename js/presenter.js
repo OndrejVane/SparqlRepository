@@ -15,3 +15,18 @@ function setUrlEndpointButtonToOrigin() {
     urlButton.style.backgroundColor = whiteColor;
     urlButton.style.color = greyColor;
 }
+
+function setQueryInputsEditable() {
+    getQueryNameField().readOnly = false;
+    getQueryDescriptionField().readOnly = false;
+    getEndPointUrlField().readOnly = false;
+    getSparqlQueryField().readOnly = false;
+
+}
+
+function setQueryInputsNonEditable() {
+    getQueryNameField().readOnly = true;
+    getQueryDescriptionField().readOnly = true;
+    getEndPointUrlField().readOnly = true;
+    getSparqlQueryField().readOnly = true;
+}

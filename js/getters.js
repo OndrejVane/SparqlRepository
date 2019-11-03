@@ -1,12 +1,31 @@
-/**
- *
- * @returns {string} endpoint_url Url of endpoint of dataset.
- */
+
+function getEndPointUrlField() {
+    return document.getElementById("endpoint-input");
+}
 function getEndPointUrl() {
-    return document.getElementById("endpoint-input").value;
+    return getEndPointUrlField().value;
 }
 
-function getRawQuery() {
-
+function getQueryNameField() {
+    return document.getElementById("query-name");
 }
 
+function getQueryName() {
+    return getQueryNameField().value;
+}
+
+function getQueryDescriptionField() {
+    return document.getElementById("query-description");
+}
+
+function getQueryDescription() {
+    return getQueryDescriptionField().value;
+}
+
+function getSparqlQueryField() {
+    return document.getElementById("sparql-query");
+}
+
+function getSparqlQuery() {
+    return getSparqlQueryField().value;
+}
