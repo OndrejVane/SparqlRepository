@@ -14,3 +14,16 @@ function searchQuery() {
         }
     }
 }
+
+function checkEndpointUrl() {
+    var urlEndPoint = getEndPointUrl();
+
+    if(isURL(urlEndPoint)) {
+        sendQuery(testQuery, urlEndPoint, checkResponse);
+    } else {
+        setUrlEndpointButtonOnError();
+    }
+}
+
+
+
