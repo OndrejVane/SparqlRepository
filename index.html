@@ -28,6 +28,8 @@
         <script src="js/variables.js"></script>
         <script src="js/colors.js"></script>
         <script src="js/presenter.js"></script>
+        <script src="js/queryClass.js"></script>
+        <script src="js/queryFunctions.js"></script>
 
         <!-- Sparql logo favicon -->
         <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
@@ -167,7 +169,7 @@ WHERE {
                     </div>
                 </form>
                 <a href="#!" class="btn btn-primary" onclick="setQueryInputsNonEditable()">Save</a>
-                <a href="#!" class="btn btn-primary">Save as new</a>
+                <a href="#!" class="btn btn-primary" onclick="addNewQuery()">Save as new</a>
                 <a href="#!" class="btn btn-primary" onclick="setQueryInputsEditable()">Edit</a>
                 <a href="#!" class="btn btn-outline-primary">&lt&lt Previous</a>
                 <a href="#!" class="btn btn-outline-primary">Next &gt&gt</a>
