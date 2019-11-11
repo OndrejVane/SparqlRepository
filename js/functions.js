@@ -25,3 +25,23 @@ function checkResponse(response, isSuccess) {
 function log(message) {
     console.log(message);
 }
+
+function buildSideBarItem(query) {
+
+    var item = sideBarItem1 + query._name
+                + sideBarItem2 + query._desc
+                + sideBarItem3;
+
+    var tagsArray = query._tags;
+
+    for (let i = 0; i < tagsArray.length; i++) {
+        item = item + buildTagForItem(tagsArray[i]);
+    }
+
+
+    return item + sideBarItem4;
+}
+
+function buildTagForItem(tagName) {
+    return tagForItem1 + tagName + tagForItem2;
+}

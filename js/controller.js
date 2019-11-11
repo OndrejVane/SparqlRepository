@@ -28,7 +28,9 @@ function checkEndpointUrl() {
 window.onload = function() {
     log("Page onLoad");
     init();
-    log("Page after init")
+    log("Page after init");
+    showAllQueries();
+    log("Queries loaded");
 };
 
 

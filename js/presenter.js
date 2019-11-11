@@ -30,3 +30,13 @@ function setQueryInputsNonEditable() {
     getEndPointUrlField().readOnly = true;
     getSparqlQueryField().readOnly = true;
 }
+
+function showAllQueries() {
+
+    let queries = getAllQueries();
+
+    for (let i = 0; i < queries.length; i++) {
+        let result = buildSideBarItem(queries[i]);
+        $('#query-list').append(result);
+    }
+}

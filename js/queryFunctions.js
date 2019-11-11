@@ -25,7 +25,7 @@ function getQueryTags() { //docasna fce, predelat!! - vraci pole
 function addNewQuery() {
     var id = window.localStorage.getItem("id");
     incrementId();
-    var myQuery = new Query(getQueryName(), getQueryDescription(), getEndPointUrl(),getQueryTags(),getSparqlQuery(), 1)
+    var myQuery = new Query(getQueryName(), getQueryDescription(), getEndPointUrl(), getQueryTags(),getSparqlQuery(), 1);
     //var ver = myQuery.version;
 
     window.localStorage.setItem(id,JSON.stringify({lastVersion: 1, queries : [myQuery]}));
