@@ -1,7 +1,20 @@
 function init() {
-    window.localStorage.setItem("id", 1);
-    window.localStorage.setItem("currentId",0);
-    window.localStorage.setItem("currentVersion",0);
+    if(window.localStorage.getItem("id") === null){
+        window.localStorage.setItem("id", 1);
+        log("id successfully initialized to value 1");
+    }
+
+    if(window.localStorage.getItem("currentId") === null){
+        window.localStorage.setItem("currentId",-1);
+        log("currentId successfully initialized to value -1");
+    }
+
+    if(window.localStorage.getItem("currentVersion") === null){
+        window.localStorage.setItem("currentVersion", -1);
+        log("currentVersionId successfully initialized to value -1");
+    }
+
+    //TODO: načíst query podle currentId, pokud je currentId == -1, tak tak vezmeme třeba první query
 }
 
 function addNewQuery() {
