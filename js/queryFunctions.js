@@ -55,7 +55,7 @@ function addNewVersion() {
 }
 
 function deleteVersion() {
-    //TODO: kontrola zda nejake query zobrazeno, zmenit ziskani currentVersion
+    //TODO: kontrola zda nejake query zobrazeno, zmenit ziskani currentVersion, kdyz smazemo posledni version -> smazat cely zaznam
 
     var currId = window.localStorage.getItem("currentId");
     var currVer = window.localStorage.getItem("currentVersion");
@@ -153,4 +153,38 @@ function getPrevVersion() {
         //ukazat index + 1
         //nastavit query vlastnosti podle pole
     }
+}
+
+function getAllQueries() {
+    var id;
+    var result = [];
+    if(window.localStorage.getItem("id") !== null){
+        id = window.localStorage.getItem("id");
+        var i;
+        var j;
+        var maxVer;
+        var maxVerIndex;
+        var len = window.localStorage.length;
+        for (i = 0; i < len; i++){
+            var k = window.localStorage.key(i);
+            if (k != "id" && k != "currentId" && k != "currentVersion"){ //upravit pokud pridame globalni promennou
+                var value = window.localStorage.getItem(k);
+                var parsed = JSON.parse(value);
+                var arr = jsonToArray(parsed.queries);
+                maxVer = -1;
+                maxVerIndex = -1;
+
+                for (j = 0; j < arr.length; j++) {
+
+                    if (arr[j]._version > maxVer){
+                        maxVer = arr[j]._version;
+                        maxVerIndex = j;
+                    }
+                }
+                result.push(arr[maxVerIndex]);
+            }
+        }
+    }
+    //window.log(result);
+    return result;
 }
