@@ -29,3 +29,7 @@ function getSparqlQueryField() {
 function getSparqlQuery() {
     return getSparqlQueryField().value;
 }
+
+function getToastMessage() {
+    return document.getElementById("toast-message");
+}

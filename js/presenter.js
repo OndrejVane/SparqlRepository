@@ -42,3 +42,14 @@ function showAllQueries() {
         $('#query-list').append(result);
     }
 }
+
+/**
+ * Function for showing toast message
+ * @param {string} message
+ */
+function showToast(message) {
+    let x = getToastMessage();
+    x.className = "show";
+    x.innerHTML = message;
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
