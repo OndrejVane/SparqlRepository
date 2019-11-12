@@ -35,13 +35,41 @@ function buildSideBarItem(query) {
     var tagsArray = query._tags;
 
     for (let i = 0; i < tagsArray.length; i++) {
-        item = item + buildTagForItem(tagsArray[i]);
+        item = item + buildTagForSideItem(tagsArray[i]);
     }
 
 
     return item + sideBarItem4;
 }
 
-function buildTagForItem(tagName) {
+function buildTagForSideItem(tagName) {
     return tagForItem1 + tagName + tagForItem2;
+}
+
+function buildTagForContent(tagName) {
+    return beginTagHeading5 + buildTagForSideItem(tagName) + endTagHeading5;
+}
+
+/**
+ * Function for change tags view to tags input label.
+ *
+ * @param {boolean} isEditable
+ */
+function setTagsEditable(isEditable) {
+
+    if(isEditable){
+        $(function(){
+            let tagList = $('#tag-list');
+            tagList.empty();
+            tagList.append(tagForTagInput);
+            $('#tags').tagInput({
+                labelClass:"badge badge-primary"
+            });
+
+
+        });
+    }else {
+        //TODO
+        log("Todo")
+    }
 }

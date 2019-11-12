@@ -9,6 +9,11 @@ div.content {
     height: 1000px;
 }
 
-.margin-right{
+.margin-right {
     float: right;
+}
+
+#tag-list h5 {
+    display: inline;
+    margin: 3px;
 }

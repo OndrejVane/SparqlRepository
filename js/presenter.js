@@ -21,6 +21,7 @@ function setQueryInputsEditable() {
     getQueryDescriptionField().readOnly = false;
     getEndPointUrlField().readOnly = false;
     getSparqlQueryField().readOnly = false;
+    setTagsEditable(true);
 
 }
 
@@ -29,6 +30,7 @@ function setQueryInputsNonEditable() {
     getQueryDescriptionField().readOnly = true;
     getEndPointUrlField().readOnly = true;
     getSparqlQueryField().readOnly = true;
+    setTagsEditable(false);
 }
 
 function showAllQueries() {

@@ -61,3 +61,7 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+.side-list span {
+    margin-right: 2px;
+}
