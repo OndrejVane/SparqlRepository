@@ -43,6 +43,11 @@ function showAllQueries() {
     }
 }
 
+function showSingleQuery(query) {
+    let result = buildSideBarItem(query);
+    $('#query-list').append(result);
+}
+
 /**
  * Function for showing toast message
  * @param {string} message

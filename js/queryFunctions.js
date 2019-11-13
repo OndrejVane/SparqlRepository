@@ -24,6 +24,7 @@ function addNewQuery() {
     //var ver = myQuery.version;
 
     window.localStorage.setItem(id,JSON.stringify({lastVersion: 1, queries : [myQuery]}));
+    return getQueryById(id);
 }
 
 function incrementId() {

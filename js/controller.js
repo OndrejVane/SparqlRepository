@@ -62,8 +62,9 @@ function showQueryWithId(id) {
 }
 
 function saveNewQuery(){
-    addNewQuery();
-    location.reload();
+    let newQuery = addNewQuery();
+    showSingleQuery(newQuery);
+    showToast(SAVED_SUCCESS);
 }
 
 
