@@ -60,6 +60,7 @@ function buildTagForContent(tagName) {
  */
 function setTagsEditable(isEditable) {
 
+    /*
     if(isEditable){
         $(function(){
             let tagList = $('#tag-list');
@@ -75,4 +76,5 @@ function setTagsEditable(isEditable) {
         //TODO
         log("Todo")
     }
+    */
 }

@@ -18,7 +18,7 @@ let sideBarItem2 = '">' +
     '<span class="close" onclick="deleteQueryWithId(';
 // id
 let sideBarItem3 = ')">&times;</span>' +
-    '<a onclick="log(';
+    '<a onclick="showQueryWithId(';
 // id
 let sideBarItem4 = ')">' +
     '<div>' +
@@ -50,3 +50,8 @@ var tagForTagInput = '<div class="form-control tags" id="tags">' +
     '<input type="text" class="labelinput">' +
     '<input id="tags-values" type="hidden" value="" name="result">' +
     '</div>';
+
+//nam of global items stored id local storage
+const id = "id";
+const currentId = "currentId";
+const currentVersion = "currentVersion";

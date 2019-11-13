@@ -33,3 +33,14 @@ function getSparqlQuery() {
 function getToastMessage() {
     return document.getElementById("toast-message");
 }
+
+/**
+ * Load value of current query id from local storage
+ * and return as number.
+ *
+ * @returns {number} current query id
+ */
+function getCurrentQueryId() {
+    let currentIdText = window.localStorage.getItem(currentId);
+    return parseInt(currentIdText);
+}

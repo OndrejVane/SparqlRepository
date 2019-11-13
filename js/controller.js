@@ -31,6 +31,8 @@ window.onload = function() {
     log("Page after init");
     showAllQueries();
     log("Queries loaded");
+    renderCurrentQuery();
+    log("Current query rendered");
 };
 
 /**
@@ -44,8 +46,22 @@ function deleteQueryWithId(id) {
         log("Deleting query with id: " + id);
         deleteQueryById(id);
         removeQueryFromViewById(id);
+        showToast(DELETE_SUCCESS);
     }
 }
+
+/**
+ * This function will render query with id to
+ * the form.
+ *
+ * @param {number} id
+ */
+function showQueryWithId(id) {
+    setCurrentQueryId(id);
+    renderCurrentQuery();
+}
+
+
 
 
 

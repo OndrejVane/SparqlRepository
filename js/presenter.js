@@ -58,3 +58,30 @@ function removeQueryFromViewById(id) {
     let queryId = "#query" + id;
     $(queryId).empty();
 }
+
+function renderCurrentQuery() {
+    let queryId = getCurrentQueryId();
+    let currentQuery = getQueryById(queryId);
+    if ( currentQuery === null ){
+        setQueryInputsEditable();
+        return;
+    }
+
+    log("Query id to render: " + queryId);
+    log(currentQuery);
+
+    getQueryNameField().value = currentQuery._name;
+    getQueryDescriptionField().value = currentQuery._desc;
+    getEndPointUrlField().value = currentQuery._endpoint;
+    getSparqlQueryField().value = currentQuery._body;
+
+    let tagList = $('#tag-list');
+    // reset previous tag list
+    tagList.empty();
+
+    let tags = currentQuery._tags;
+    for (let i = 0; i < tags.length; i++) {
+        let tagName = tags[i];
+        tagList.append(buildTagForContent(tagName));
+    }
+}

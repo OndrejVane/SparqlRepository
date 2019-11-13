@@ -241,3 +241,14 @@ function getQueryById(queryId) {
 function deleteQueryById(queryId) {
     window.localStorage.removeItem(queryId);
 }
+
+
+/**
+ * Set query id as a parameter of this function to the
+ * local storage with key currentId.
+ *
+ * @param queryId
+ */
+function setCurrentQueryId(queryId) {
+    window.localStorage.setItem(currentId, queryId);
+}
