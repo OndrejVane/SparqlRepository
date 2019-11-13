@@ -53,3 +53,8 @@ function showToast(message) {
     x.innerHTML = message;
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+
+function removeQueryFromViewById(id) {
+    let queryId = "#query" + id;
+    $(queryId).empty();
+}

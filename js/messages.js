@@ -1,0 +1,1 @@
+const DELETE_QUESTION = "Opravdu si přejete smazat vybraný dotaz?";

@@ -12,18 +12,28 @@ var testQuery = "SELECT ?subject ?predicate ?object\n" +
 var queryHeader = "[\"subject\",\"predicate\",\"object\"]";
 
 // HTML tag for render sidebar items
-var sideBarItem1 = '<li>' +
-    '<a href="#test" onclick="log(1)">' +
+let sideBarItem1 = '<li id="query';
+// id
+let sideBarItem2 = '">' +
+    '<span class="close" onclick="deleteQueryWithId(';
+// id
+let sideBarItem3 = ')">&times;</span>' +
+    '<a onclick="log(';
+// id
+let sideBarItem4 = ')">' +
     '<div>' +
     '<label class="cut-query-name">';
-var sideBarItem2 = '</label>' +
+// queryName
+let sideBarItem5 = '</label>' +
     '</div>' +
     '<div>' +
     '<label class="small-text cut-query-description">';
-var sideBarItem3 = '</label>' +
+// queryDescription
+let sideBarItem6 = '</label>' +
     '</div>' +
-    '<div>';
-var sideBarItem4 = '</div>' +
+    '<div class="side_item_tags">';
+// tags
+let sideBarItem7 = '</div>' +
     '</a>' +
     '</li>';
 

@@ -239,6 +239,5 @@ function getQueryById(queryId) {
 }
 
 function deleteQueryById(queryId) {
-    //TODO: kontrola, zda nemazeme aktulni query -> co zobrazit
     window.localStorage.removeItem(queryId);
 }

@@ -33,5 +33,19 @@ window.onload = function() {
     log("Queries loaded");
 };
 
+/**
+ * Function which is called after click on close icon.
+ *
+ * @param {number} id
+ */
+function deleteQueryWithId(id) {
+    if (confirm(DELETE_QUESTION)) {
+        // TODO kontrola, jestli není zobrazen mazaný dotaz, pokud ano, všechny pole smazat a nastavit na non editable
+        log("Deleting query with id: " + id);
+        deleteQueryById(id);
+        removeQueryFromViewById(id);
+    }
+}
+
 
 

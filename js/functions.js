@@ -28,9 +28,12 @@ function log(message) {
 
 function buildSideBarItem(query) {
 
-    var item = sideBarItem1 + query._name
-                + sideBarItem2 + query._desc
-                + sideBarItem3;
+    var item = sideBarItem1 + query._id
+                + sideBarItem2 + query._id
+                + sideBarItem3 + query._id
+                + sideBarItem4 + query._name
+                + sideBarItem5 + query._desc
+                + sideBarItem6;
 
     var tagsArray = query._tags;
 
@@ -39,7 +42,7 @@ function buildSideBarItem(query) {
     }
 
 
-    return item + sideBarItem4;
+    return item + sideBarItem7;
 }
 
 function buildTagForSideItem(tagName) {
