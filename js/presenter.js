@@ -60,15 +60,14 @@ function removeQueryFromViewById(id) {
 }
 
 function renderCurrentQuery() {
-    let queryId = getCurrentQueryId();
-    let currentQuery = getQueryById(queryId);
+    let currentQuery = getCurrentQuery();
     if ( currentQuery === null ){
         setQueryInputsEditable();
         return;
     }
     setQueryInputsNonEditable();
 
-    log("Query id to render: " + queryId);
+    log("Query id to render: " + currentQuery._id);
     log(currentQuery);
 
     getQueryNameField().value = currentQuery._name;

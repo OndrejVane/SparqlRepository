@@ -252,3 +252,8 @@ function deleteQueryById(queryId) {
 function setCurrentQueryId(queryId) {
     window.localStorage.setItem(currentId, queryId);
 }
+
+function getCurrentQuery() {
+    let currentId = getCurrentQueryId();
+    return getQueryById(currentId);
+}

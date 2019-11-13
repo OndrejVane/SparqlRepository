@@ -59,22 +59,39 @@ function buildTagForContent(tagName) {
  * @param {boolean} isEditable
  */
 function setTagsEditable(isEditable) {
+    let tagListElement = $('#tag-list');
 
-    /*
     if(isEditable){
-        $(function(){
-            let tagList = $('#tag-list');
-            tagList.empty();
-            tagList.append(tagForTagInput);
-            $('#tags').tagInput({
-                labelClass:"badge badge-primary"
-            });
+        let currentQuery = getCurrentQuery();
+        let tagInput;
+        let tagsValues = "";
+        if (currentQuery === null || currentQuery._tags.length === 0) {
 
+            log("Render empty tag input");
 
+            tagInput = tagForTagInput1 + tagForTagInput2;
+
+        } else {
+            log("Tags are not empty");
+            let tags = currentQuery._tags;
+
+            tagInput = tagForTagInput1;
+            for (let i = 0; i < tags.length; i++) {
+                tagsValues = tagsValues + tags[i] + ',';
+            }
+            tagsValues = tagsValues.slice(0, -1);
+            tagInput = tagInput + tagForTagInput2;
+        }
+
+        tagListElement.empty();
+        tagListElement.append(tagInput);
+        if(tagsValues !== ""){
+            getTagsValuesElement().value = tagsValues;
+        }
+
+        $('#tags').tagInput({
+            labelClass: "badge badge-primary"
         });
-    }else {
-        //TODO
-        log("Todo")
     }
-    */
+
 }

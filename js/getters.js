@@ -44,3 +44,7 @@ function getCurrentQueryId() {
     let currentIdText = window.localStorage.getItem(currentId);
     return parseInt(currentIdText);
 }
+
+function getTagsValuesElement() {
+    return document.getElementById("tags-values");
+}

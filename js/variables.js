@@ -44,10 +44,10 @@ var endTagHeading5 = '</h5>';
 var tagForItem1 = '<span class="badge badge-primary">';
 var tagForItem2 = '</span>';
 
-// HTML tag for tag input field
-var tagForTagInput = '<div class="form-control tags" id="tags">' +
-    '<span class="badge badge-primary tagLabel" data-badge="1">das <a href="#" data-badge="1" aria-label="close" class="closelabel">×</a></span>' +
-    '<input type="text" class="labelinput">' +
+// HTML tags for tag input
+var tagForTagInput1 = '<div class="form-control tags" id="tags">';
+
+var tagForTagInput2 = '<input type="text" class="labelinput">' +
     '<input id="tags-values" type="hidden" value="" name="result">' +
     '</div>';
 
