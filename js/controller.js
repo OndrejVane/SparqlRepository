@@ -61,6 +61,11 @@ function showQueryWithId(id) {
     renderCurrentQuery();
 }
 
+function saveNewQuery(){
+    addNewQuery();
+    location.reload();
+}
+
 
 
 

@@ -66,6 +66,7 @@ function renderCurrentQuery() {
         setQueryInputsEditable();
         return;
     }
+    setQueryInputsNonEditable();
 
     log("Query id to render: " + queryId);
     log(currentQuery);
