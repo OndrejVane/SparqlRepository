@@ -48,3 +48,7 @@ function getCurrentQueryId() {
 function getTagsValuesElement() {
     return document.getElementById("tags-values");
 }
+
+function getTagsArray() {
+    return getTagsValuesElement().value.split(",");
+}

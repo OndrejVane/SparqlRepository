@@ -17,15 +17,10 @@ function init() {
     //TODO: načíst query podle currentId, pokud je currentId == -1, tak vezmeme třeba první query
 }
 
-function getQueryTags() { //docasna fce, predelat!! - vraci pole
-    return ["tag1", "tag2", "tag3"];
-}
-
-
 function addNewQuery() {
     var id = window.localStorage.getItem("id");
     incrementId();
-    var myQuery = new Query(id, getQueryName(), getQueryDescription(), getEndPointUrl(), getQueryTags(),getSparqlQuery(), 1);
+    var myQuery = new Query(id, getQueryName(), getQueryDescription(), getEndPointUrl(), getTagsArray(), getSparqlQuery(), 1);
     //var ver = myQuery.version;
 
     window.localStorage.setItem(id,JSON.stringify({lastVersion: 1, queries : [myQuery]}));
@@ -46,7 +41,7 @@ function addNewVersion() {
     var lastVersion = parsed.lastVersion;
     lastVersion++;
 
-    arr.push(new Query(currId, getQueryName(), getQueryDescription(), getEndPointUrl(),getQueryTags(),getSparqlQuery(), lastVersion))
+    arr.push(new Query(currId, getQueryName(), getQueryDescription(), getEndPointUrl(),getTagsArray(),getSparqlQuery(), lastVersion))
 
     window.localStorage.setItem(currId,JSON.stringify({lastVersion: lastVersion, queries : arr}));
 
