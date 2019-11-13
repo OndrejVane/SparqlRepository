@@ -14,7 +14,7 @@ function init() {
         log("currentVersionId successfully initialized to value -1");
     }
 
-    //TODO: načíst query podle currentId, pokud je currentId == -1, tak tak vezmeme třeba první query
+    //TODO: načíst query podle currentId, pokud je currentId == -1, tak vezmeme třeba první query
 }
 
 function getQueryTags() { //docasna fce, predelat!! - vraci pole
@@ -86,6 +86,11 @@ function deleteQuery() {
     //TODO: pres Sidebar
 }
 
+/**
+ *
+ * @param json
+ * @returns {Query[]}
+ */
 function jsonToArray(json){
     var result = [];
     var keys = Object.keys(json);
@@ -107,59 +112,88 @@ function getSearchedQuery() {
     currQuery = parsed; //anebo se vzdy dotazovat na db
 }
 
+/**
+ *
+ * @returns {Query|null}
+ */
 function getPrevVersion() {
-    //TODO: kontrola zda nejake query zobrazeno, zmenit currentVersion, zmenit ziskani currentId
+    //TODO: kontrola zda nejake query zobrazeno -> sedive tlacitko
+    // kdyz arr.length == 1 -> sedive tlacitko
+    // zmenit currentVersion -> ja provadim zmenu (nebo ty na frontendu)
 
     var currId = window.localStorage.getItem("currentId");
     var currVer = window.localStorage.getItem("currentVersion");
     var value = window.localStorage.getItem(currId);
     var parsed = JSON.parse(value);
     var arr = jsonToArray(parsed.queries);
-    var index;
-    var lastVersion = parsed.lastVersion;
+    var i;
+    var minDiff = 10000;
+    var minDiffIndex = -1;
 
-    for (i = 0; i < arr.length; i++) {
-        if (arr[i]._version == currVer){
-            index = i;
-            break;
+    if (arr.length > 1){ //mozna neni treba
+        for (i = 0; i < arr.length; i++) {
+            var temp = currVer - arr[i]._version;
+            if (temp > 0 && temp < minDiff){
+                minDiff = temp;
+                minDiffIndex = i;
+            }
         }
-    }
 
-    if (index == 0){
-        //nic - sedive tlacitko
+        if (minDiffIndex == -1){ //mozna neni treba kdyz kontrola na frontendu
+            return null;
+        } else{
+            //window.log(arr[minDiffIndex]);
+            window.localStorage.setItem("currentVersion", arr[minDiffIndex]._version);
+            return arr[minDiffIndex];
+        }
     } else{
-        //ukazat index - 1
-        //nastavit query vlastnosti podle pole
+        return null;
     }
-
 }
 
-function getPrevVersion() {
-    //TODO: kontrola zda nejake query zobrazeno, zmenit currentVersion
+/**
+ *
+ * @returns {Query|null}
+ */
+function getNextVersion() {
+    //TODO: kontrola zda nejake query zobrazeno -> sedive tlacitko
+    // kdyz arr.length == 1 -> sedive tlacitko
+    // zmenit currentVersion -> ja provadim zmenu
 
     var currId = window.localStorage.getItem("currentId");
     var currVer = window.localStorage.getItem("currentVersion");
     var value = window.localStorage.getItem(currId);
     var parsed = JSON.parse(value);
     var arr = jsonToArray(parsed.queries);
-    var index;
-    var lastVersion = parsed.lastVersion;
+    var i;
+    var minDiff = 10000;
+    var minDiffIndex = -1;
 
-    for (i = 0; i < arr.length; i++) {
-        if (arr[i]._version == currVer){
-            index = i;
-            break;
+    if (arr.length > 1){ //mozna neni treba
+        for (i = 0; i < arr.length; i++) {
+            var temp = arr[i]._version - currVer;
+            if (temp > 0 && temp < minDiff){
+                minDiff = temp;
+                minDiffIndex = i;
+            }
         }
-    }
 
-    if (index == arr.length-1){
-        //nic - sedive tlacitko
+        if (minDiffIndex == -1){ //mozna neni treba kdyz kontrola na frontendu
+            return null;
+        } else{
+            //window.log(arr[minDiffIndex]);
+            window.localStorage.setItem("currentVersion", arr[minDiffIndex]._version);
+            return arr[minDiffIndex];
+        }
     } else{
-        //ukazat index + 1
-        //nastavit query vlastnosti podle pole
+        return null;
     }
 }
 
+/**
+ *
+ * @returns {Query[]}
+ */
 function getAllQueries() {
     var id;
     var result = [];
@@ -173,20 +207,7 @@ function getAllQueries() {
         for (i = 0; i < len; i++){
             var k = window.localStorage.key(i);
             if (k != "id" && k != "currentId" && k != "currentVersion"){ //upravit pokud pridame globalni promennou
-                var value = window.localStorage.getItem(k);
-                var parsed = JSON.parse(value);
-                var arr = jsonToArray(parsed.queries);
-                maxVer = -1;
-                maxVerIndex = -1;
-
-                for (j = 0; j < arr.length; j++) {
-
-                    if (arr[j]._version > maxVer){
-                        maxVer = arr[j]._version;
-                        maxVerIndex = j;
-                    }
-                }
-                result.push(arr[maxVerIndex]);
+                result.push(getQueryById(k));
             }
         }
     }
@@ -194,6 +215,27 @@ function getAllQueries() {
     return result;
 }
 
+/**
+ *
+ * @param queryId
+ * @returns {Query|null}
+ */
 function getQueryById(queryId) {
-    return window.localStorage.getItem(queryId); //null kdyz neexistuje
+    var value = window.localStorage.getItem(queryId);
+    if (value === null){
+        return null;
+    }
+    var parsed = JSON.parse(value);
+    var arr = jsonToArray(parsed.queries);
+    var maxVer = -1;
+    var maxVerIndex = -1;
+
+    for (j = 0; j < arr.length; j++) {
+        if (arr[j]._version > maxVer){
+            maxVer = arr[j]._version;
+            maxVerIndex = j;
+        }
+    }
+
+    return arr[maxVerIndex];
 }
