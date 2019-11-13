@@ -1,11 +1,20 @@
 class Query {
-    constructor(name, desc, endpoint, tags, body, version) {
+    constructor(id, name, desc, endpoint, tags, body, version) {
+        this._id = id;
         this._desc = desc;
         this._endpoint = endpoint;
         this._tags = tags;
         this._body = body;
         this._version = version;
         this._name = name;
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    set id(value) {
+        this._id = value;
     }
 
     get desc() {

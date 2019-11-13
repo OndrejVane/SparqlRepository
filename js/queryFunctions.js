@@ -25,7 +25,7 @@ function getQueryTags() { //docasna fce, predelat!! - vraci pole
 function addNewQuery() {
     var id = window.localStorage.getItem("id");
     incrementId();
-    var myQuery = new Query(getQueryName(), getQueryDescription(), getEndPointUrl(), getQueryTags(),getSparqlQuery(), 1);
+    var myQuery = new Query(id, getQueryName(), getQueryDescription(), getEndPointUrl(), getQueryTags(),getSparqlQuery(), 1);
     //var ver = myQuery.version;
 
     window.localStorage.setItem(id,JSON.stringify({lastVersion: 1, queries : [myQuery]}));
@@ -46,7 +46,7 @@ function addNewVersion() {
     var lastVersion = parsed.lastVersion;
     lastVersion++;
 
-    arr.push(new Query(getQueryName(), getQueryDescription(), getEndPointUrl(),getQueryTags(),getSparqlQuery(), lastVersion))
+    arr.push(new Query(currId, getQueryName(), getQueryDescription(), getEndPointUrl(),getQueryTags(),getSparqlQuery(), lastVersion))
 
     window.localStorage.setItem(currId,JSON.stringify({lastVersion: lastVersion, queries : arr}));
 
@@ -201,8 +201,6 @@ function getAllQueries() {
         id = window.localStorage.getItem("id");
         var i;
         var j;
-        var maxVer;
-        var maxVerIndex;
         var len = window.localStorage.length;
         for (i = 0; i < len; i++){
             var k = window.localStorage.key(i);
@@ -238,4 +236,9 @@ function getQueryById(queryId) {
     }
 
     return arr[maxVerIndex];
+}
+
+function deleteQueryById(queryId) {
+    //TODO: kontrola, zda nemazeme aktulni query -> co zobrazit
+    window.localStorage.removeItem(queryId);
 }
