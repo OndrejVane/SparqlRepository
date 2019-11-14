@@ -70,6 +70,7 @@ function saveNewQuery(){
     setQueryInputsNonEditable();
     setEditButtonEnable();
     setSaveButtonDisabled();
+    addTitleToTheCardHeader(CARD_HEADER_VIEW);
 }
 
 
