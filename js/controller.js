@@ -42,7 +42,10 @@ window.onload = function() {
  */
 function deleteQueryWithId(id) {
     if (confirm(DELETE_QUESTION)) {
-        // TODO kontrola, jestli není zobrazen mazaný dotaz, pokud ano, všechny pole smazat a nastavit na non editable
+        if( id === getCurrentQueryId()){
+            setFormClearForNewQuery();
+            log("Current query deleted");
+        }
         log("Deleting query with id: " + id);
         deleteQueryById(id);
         removeQueryFromViewById(id);

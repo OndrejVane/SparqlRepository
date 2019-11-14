@@ -49,12 +49,13 @@ function setFormClearForNewQuery() {
     setEditButtonDisabled();
     setSaveButtonDisabled();
     addTitleToTheCardHeader(CARD_HEADER_NEW);
-    //getSaveButtonElement().removeClass("disabled");
 }
 
 function showAllQueries() {
 
     let queries = getAllQueries();
+
+    log("All queries: " + queries);
 
     for (let i = 0; i < queries.length; i++) {
         let result = buildSideBarItem(queries[i]);
