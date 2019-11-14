@@ -1,3 +1,10 @@
-const DELETE_QUESTION = "Opravdu si přejete smazat vybraný dotaz?";
-const DELETE_SUCCESS = "Dotaz byl úspěšně smazán";
-const SAVED_SUCCESS = "Dotaz by úspěšně uložen";
+const DELETE_QUESTION = "Are you sure you want to delete this query?";
+const DELETE_SUCCESS = "Query has been successfully delete";
+const SAVED_SUCCESS = "Query has been successfully save";
+const CARD_HEADER_EDIT_MESSAGE = "EDIT";
+const CARD_HEADER_NEW_MESSAGE = "NEW";
+const CARD_HEADER_VIEW_MESSAGE = "VIEW";
+const CARD_HEADER_QUERY_EXPLORER = "Query Explorer";
+const CARD_HEADER_EDIT = CARD_HEADER_QUERY_EXPLORER + " - " + CARD_HEADER_EDIT_MESSAGE;
+const CARD_HEADER_NEW = CARD_HEADER_QUERY_EXPLORER + " - " + CARD_HEADER_NEW_MESSAGE;
+const CARD_HEADER_VIEW = CARD_HEADER_QUERY_EXPLORER + " - " + CARD_HEADER_VIEW_MESSAGE;

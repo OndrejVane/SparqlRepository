@@ -64,6 +64,7 @@
         <div class="input-group mb-3">
             <input type="text" id="searchBox" onkeyup="searchQuery()" class="form-control" placeholder="Search sparql query" aria-label="Search sparql query" aria-describedby="basic-addon2">
         </div>
+        <a href="#!" class="btn btn-primary" onclick="setFormClearForNewQuery()">New query</a>
     </div>
     <!-- ./Search box -->
 
@@ -80,7 +81,7 @@
     <!-- Content -->
     <div class="content">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header" id="card-header">
                 Query Explorer
             </div>
             <div class="card-body">
@@ -119,11 +120,11 @@
 			            </textarea>
                     </div>
                 </form>
-                <a href="#!" class="btn btn-primary" onclick="setQueryInputsNonEditable()">Save</a>
-                <a href="#!" class="btn btn-primary" onclick="saveNewQuery()">Save as new</a>
-                <a href="#!" class="btn btn-primary" onclick="setQueryInputsEditable()">Edit</a>
-                <a href="#!" class="btn btn-outline-primary" >&lt&lt Previous</a>
-                <a href="#!" class="btn btn-outline-primary">Next &gt&gt</a>
+                <a href="#!" id="save-as-new-btn" class="btn btn-primary" onclick="saveNewQuery()">Save as new</a>
+                <a href="#!" id="edit-btn" class="btn btn-primary" onclick="setEditMode()">Edit</a>
+                <a href="#!" id="save-btn" class="btn btn-primary" onclick="setQueryInputsNonEditable()">Save</a>
+                <a href="#!" id="prev-btn" class="btn btn-outline-primary disabled" >&lt&lt Previous</a>
+                <a href="#!" id="next-btn" class="btn btn-outline-primary disabled">Next &gt&gt</a>
                 <a href="#!" class="btn btn-success margin-right">Send query</a>
             </div>
         </div>

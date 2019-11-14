@@ -60,9 +60,9 @@ function buildTagForContent(tagName) {
  */
 function setTagsEditable(isEditable) {
     let tagListElement = $('#tag-list');
+    let currentQuery = getCurrentQuery();
 
-    if(isEditable){
-        let currentQuery = getCurrentQuery();
+    if (isEditable) {
         let tagInput;
         let tagsValues = "";
         if (currentQuery === null || currentQuery._tags.length === 0) {
@@ -85,13 +85,15 @@ function setTagsEditable(isEditable) {
 
         tagListElement.empty();
         tagListElement.append(tagInput);
-        if(tagsValues !== ""){
+        if (tagsValues !== "") {
             getTagsValuesElement().value = tagsValues;
         }
 
         $('#tags').tagInput({
             labelClass: "badge badge-primary"
         });
+    } else {
+        renderTagsForCurrentQuery(currentQuery._tags);
     }
 
 }

@@ -49,6 +49,27 @@ function getTagsValuesElement() {
     return document.getElementById("tags-values");
 }
 
+/**
+ *
+ * @returns {string[]} array of tags
+ */
 function getTagsArray() {
-    return getTagsValuesElement().value.split(",");
+    let tagInputElement = getTagsValuesElement();
+    if (tagInputElement === null) {
+        if (getCurrentQueryId() !== -1) {
+            return getCurrentQuery()._tags;
+        } else {
+            return [];
+        }
+    } else {
+        return getTagsValuesElement().value.split(",");
+    }
+}
+
+function getSaveButtonElement() {
+    return $('#save-btn');
+}
+
+function getCardHeader() {
+    return document.getElementById('card-header');
 }

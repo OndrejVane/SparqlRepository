@@ -25,12 +25,31 @@ function setQueryInputsEditable() {
 
 }
 
+function setEditMode() {
+    setQueryInputsEditable();
+    setSaveButtonEnable();
+    addTitleToTheCardHeader(CARD_HEADER_EDIT);
+}
+
 function setQueryInputsNonEditable() {
     getQueryNameField().readOnly = true;
     getQueryDescriptionField().readOnly = true;
     getEndPointUrlField().readOnly = true;
     getSparqlQueryField().readOnly = true;
     setTagsEditable(false);
+}
+
+function setFormClearForNewQuery() {
+    setCurrentQueryId(-1);
+    setQueryInputsEditable();
+    getQueryNameField().value = "";
+    getQueryDescriptionField().value = "";
+    getEndPointUrlField().value = "";
+    getSparqlQueryField().value = "";
+    setEditButtonDisabled();
+    setSaveButtonDisabled();
+    addTitleToTheCardHeader(CARD_HEADER_NEW);
+    //getSaveButtonElement().removeClass("disabled");
 }
 
 function showAllQueries() {
@@ -67,11 +86,13 @@ function removeQueryFromViewById(id) {
 function renderCurrentQuery() {
     let currentQuery = getCurrentQuery();
     if ( currentQuery === null ){
-        setQueryInputsEditable();
+        setFormClearForNewQuery();
         return;
     }
     setQueryInputsNonEditable();
-
+    setEditButtonEnable();
+    setSaveButtonDisabled();
+    addTitleToTheCardHeader(CARD_HEADER_VIEW);
     log("Query id to render: " + currentQuery._id);
     log(currentQuery);
 
@@ -80,13 +101,53 @@ function renderCurrentQuery() {
     getEndPointUrlField().value = currentQuery._endpoint;
     getSparqlQueryField().value = currentQuery._body;
 
+    renderTagsForCurrentQuery(currentQuery._tags);
+
+}
+
+function renderTagsForCurrentQuery(tags) {
     let tagList = $('#tag-list');
     // reset previous tag list
     tagList.empty();
 
-    let tags = currentQuery._tags;
     for (let i = 0; i < tags.length; i++) {
         let tagName = tags[i];
         tagList.append(buildTagForContent(tagName));
     }
+}
+
+function setSaveButtonDisabled() {
+    $('#save-btn').addClass("disabled");
+}
+
+function setEditButtonDisabled() {
+    $('#edit-btn').addClass("disabled");
+}
+
+function setPrevButtonDisabled() {
+    $('#prev-btn').addClass("disabled");
+}
+
+function setNextButtonDisable() {
+    $('#next-btn').addClass("disabled");
+}
+
+function setSaveButtonEnable() {
+    $('#save-btn').removeClass("disabled");
+}
+
+function setEditButtonEnable() {
+    $('#edit-btn').removeClass("disabled");
+}
+
+function setPrevButtonEnable() {
+    $('#prev-btn').removeClass("disabled");
+}
+
+function setNextButtonEnable() {
+    $('#next-btn').removeClass("disabled");
+}
+
+function addTitleToTheCardHeader(message) {
+    getCardHeader().innerHTML = message;
 }

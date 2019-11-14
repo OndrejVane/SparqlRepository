@@ -65,6 +65,11 @@ function saveNewQuery(){
     let newQuery = addNewQuery();
     showSingleQuery(newQuery);
     showToast(SAVED_SUCCESS);
+    log("Current query to set is: " + newQuery._id);
+    setCurrentQueryId(newQuery._id);
+    setQueryInputsNonEditable();
+    setEditButtonEnable();
+    setSaveButtonDisabled();
 }
 
 
