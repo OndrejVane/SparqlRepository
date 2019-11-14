@@ -85,12 +85,12 @@
                 <div>
                     <label><strong>Name</strong></label>
                     <!-- In this input will be render query name -->
-                    <input class="form-control" id="query-name" readonly>
+                    <input class="form-control" id="query-name" onkeyup="onQueryChange()" readonly>
                 </div>
                 <div>
                     <label><strong>Description</strong></label>
                     <!-- In this text area will be render query description -->
-                    <textarea class="form-control" id="query-description" rows="3" readonly>
+                    <textarea class="form-control" id="query-description" rows="3" onkeyup="onQueryChange()" readonly>
                     </textarea>
                 </div>
                 <div>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <!-- In this input will be render query end point -->
-                        <input type="text" id="endpoint-input" class="form-control" onkeyup="setUrlEndpointButtonToOrigin()" aria-describedby="basic-addon2" readonly>
+                        <input type="text" id="endpoint-input" class="form-control" onkeyup="setUrlEndpointButtonToOrigin(); onQueryChange()" aria-describedby="basic-addon2" readonly>
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" onclick="checkEndpointUrl()" type="button" id="endpointButton" >Test URL endpoint</button>
                         </div>
@@ -113,13 +113,13 @@
                     <div class="form-group">
                         <label><strong>Sparql query</strong></label>
                         <!-- In this text area tag will be render sparql query -->
-                        <textarea class="form-control" id="sparql-query" name="sparqlQuery" rows="10" readonly>
+                        <textarea class="form-control" id="sparql-query" name="sparqlQuery" rows="10" onkeyup="onQueryChange()" readonly>
 			            </textarea>
                     </div>
                 </form>
                 <a href="#!" id="save-as-new-btn" class="btn btn-primary" onclick="saveNewQuery()" title="Save current query as new item">Save as new</a>
                 <a href="#!" id="edit-btn" class="btn btn-primary" onclick="setEditMode()" title="Edit current query">Edit</a>
-                <a href="#!" id="save-btn" class="btn btn-primary" onclick="setQueryInputsNonEditable()" title="Save changes in current query">Save</a>
+                <a href="#!" id="save-btn" class="btn btn-primary" onclick="saveNewVersionOfQuery()" title="Save changes in current query">Save</a>
                 <a href="#!" id="prev-btn" class="btn btn-outline-primary disabled" >&lt&lt Previous</a>
                 <a href="#!" id="next-btn" class="btn btn-outline-primary disabled">Next &gt&gt</a>
                 <a href="#!" class="btn btn-success margin-right" title="Send current query to the endpoint">Send query</a>

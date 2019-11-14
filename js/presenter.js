@@ -27,8 +27,14 @@ function setQueryInputsEditable() {
 
 function setEditMode() {
     setQueryInputsEditable();
-    setSaveButtonEnable();
     addTitleToTheCardHeader(CARD_HEADER_EDIT);
+}
+
+function setViewMode() {
+    setQueryInputsNonEditable();
+    setEditButtonEnable();
+    setSaveButtonDisabled();
+    addTitleToTheCardHeader(CARD_HEADER_VIEW);
 }
 
 function setQueryInputsNonEditable() {
@@ -41,6 +47,7 @@ function setQueryInputsNonEditable() {
 
 function setFormClearForNewQuery() {
     setCurrentQueryId(-1);
+    setCurrentVersion(-1);
     setQueryInputsEditable();
     getQueryNameField().value = "";
     getQueryDescriptionField().value = "";
@@ -90,6 +97,7 @@ function renderCurrentQuery() {
         setFormClearForNewQuery();
         return;
     }
+    setCurrentVersion(currentQuery._version);
     setQueryInputsNonEditable();
     setEditButtonEnable();
     setSaveButtonDisabled();

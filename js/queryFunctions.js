@@ -253,3 +253,7 @@ function getCurrentQuery() {
     let currentId = getCurrentQueryId();
     return getQueryById(currentId);
 }
+
+function setCurrentVersion(currentVersionId) {
+    window.localStorage.setItem(currentVersion, currentVersionId);
+}

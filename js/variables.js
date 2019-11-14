@@ -47,7 +47,7 @@ var tagForItem2 = '</span>';
 // HTML tags for tag input
 var tagForTagInput1 = '<div class="form-control tags" id="tags">';
 
-var tagForTagInput2 = '<input type="text" class="labelinput">' +
+var tagForTagInput2 = '<input type="text" class="labelinput" onkeyup="onQueryChange()">' +
     '<input id="tags-values" type="hidden" value="" name="result">' +
     '</div>';
 

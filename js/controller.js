@@ -70,10 +70,25 @@ function saveNewQuery(){
     showToast(SAVED_SUCCESS);
     log("Current query to set is: " + newQuery._id);
     setCurrentQueryId(newQuery._id);
-    setQueryInputsNonEditable();
-    setEditButtonEnable();
-    setSaveButtonDisabled();
-    addTitleToTheCardHeader(CARD_HEADER_VIEW);
+    setCurrentVersion(newQuery._version);
+    setViewMode();
+}
+
+function saveNewVersionOfQuery() {
+    addNewVersion();
+    let currentQuery = getCurrentQuery();
+    removeQueryFromViewById(currentQuery._id);
+    showSingleQuery(currentQuery);
+    setCurrentVersion(currentQuery._version);
+    setViewMode();
+    showToast(SAVED_VERSION_SUCCESS);
+}
+
+function onQueryChange() {
+    // check if is edit mode
+    if ( getCardHeader().innerHTML === CARD_HEADER_EDIT){
+        setSaveButtonEnable();
+    }
 }
 
 
