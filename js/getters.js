@@ -1,7 +1,7 @@
-
 function getEndPointUrlField() {
     return document.getElementById("endpoint-input");
 }
+
 function getEndPointUrl() {
     return getEndPointUrlField().value;
 }

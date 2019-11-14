@@ -18,14 +18,14 @@ function searchQuery() {
 function checkEndpointUrl() {
     var urlEndPoint = getEndPointUrl();
 
-    if(isURL(urlEndPoint)) {
+    if (isURL(urlEndPoint)) {
         sendQuery(testQuery, urlEndPoint, checkResponse);
     } else {
         setUrlEndpointButtonOnError();
     }
 }
 
-window.onload = function() {
+window.onload = function () {
     log("Page onLoad");
     init();
     log("Page after init");
@@ -42,7 +42,7 @@ window.onload = function() {
  */
 function deleteQueryWithId(id) {
     if (confirm(DELETE_QUESTION)) {
-        if( id === getCurrentQueryId()){
+        if (id === getCurrentQueryId()) {
             setFormClearForNewQuery();
             log("Current query deleted");
         }
@@ -64,7 +64,7 @@ function showQueryWithId(id) {
     renderCurrentQuery();
 }
 
-function saveNewQuery(){
+function saveNewQuery() {
     let newQuery = addNewQuery();
     showSingleQuery(newQuery);
     showToast(SAVED_SUCCESS);
@@ -86,7 +86,7 @@ function saveNewVersionOfQuery() {
 
 function onQueryChange() {
     // check if is edit mode
-    if ( getCardHeader().innerHTML === CARD_HEADER_EDIT){
+    if (getCardHeader().innerHTML === CARD_HEADER_EDIT) {
         setSaveButtonEnable();
     }
 }

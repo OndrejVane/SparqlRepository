@@ -15,8 +15,6 @@
         <link rel="stylesheet" href="dependencies/bootstrap-tags-tnput/tagInput.css">
         <script src="dependencies/bootstrap-tags-tnput/tagInput.js"></script>
 
-
-
         <!-- Own styles include -->
         <link rel="stylesheet" type="text/css" href="./css/sidebar.css">
         <link rel="stylesheet" type="text/css" href="./css/content.css">
@@ -48,8 +46,6 @@
         <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-
-
     </head>
 
     <body>
@@ -59,14 +55,13 @@
         <div class="input-group mb-3">
             <input type="text" id="searchBox" onkeyup="searchQuery()" class="form-control" placeholder="Search sparql query" aria-label="Search sparql query" aria-describedby="basic-addon2">
         </div>
-        <a href="#!" class="btn btn-primary" onclick="setFormClearForNewQuery()" title="Create new sparql query">New query</a>
-        <a href="#!" class="btn btn-outline-primary disabled">Export</a>
-        <a href="#!" class="btn btn-outline-primary disabled">Import</a>
+        <a href="#" class="btn btn-primary" onclick="setFormClearForNewQuery()" title="Create new sparql query">New query</a>
+        <a href="#" class="btn btn-outline-primary disabled">Export</a>
+        <a href="#" class="btn btn-outline-primary disabled">Import</a>
     </div>
     <!-- ./Search box -->
 
     <!-- Side menu -->
-
     <div class="side-list">
         <ul id="query-list">
             <!-- Here will be render list of queries -->
@@ -74,9 +69,10 @@
     </div>
     <!-- ./Sidebar menu -->
 
-
     <!-- Content -->
     <div class="content">
+
+        <!-- Query Card -->
         <div class="card">
             <div class="card-header" id="card-header">
                 Query Explorer
@@ -117,14 +113,17 @@
 			            </textarea>
                     </div>
                 </form>
-                <a href="#!" id="save-as-new-btn" class="btn btn-primary" onclick="saveNewQuery()" title="Save current query as new item">Save as new</a>
-                <a href="#!" id="edit-btn" class="btn btn-primary" onclick="setEditMode()" title="Edit current query">Edit</a>
-                <a href="#!" id="save-btn" class="btn btn-primary" onclick="saveNewVersionOfQuery()" title="Save changes in current query">Save</a>
-                <a href="#!" id="prev-btn" class="btn btn-outline-primary disabled" >&lt&lt Previous</a>
-                <a href="#!" id="next-btn" class="btn btn-outline-primary disabled">Next &gt&gt</a>
-                <a href="#!" class="btn btn-success margin-right" title="Send current query to the endpoint">Send query</a>
+                <a href="#" id="save-as-new-btn" class="btn btn-primary" onclick="saveNewQuery()" title="Save current query as new item">Save as new</a>
+                <a href="#" id="edit-btn" class="btn btn-primary" onclick="setEditMode()" title="Edit current query">Edit</a>
+                <a href="#" id="save-btn" class="btn btn-primary" onclick="saveNewVersionOfQuery()" title="Save changes in current query">Save</a>
+                <a href="#" id="prev-btn" class="btn btn-outline-primary disabled" >&lt&lt Previous</a>
+                <a href="#" id="next-btn" class="btn btn-outline-primary disabled">Next &gt&gt</a>
+                <a href="#" class="btn btn-success margin-right" title="Send current query to the endpoint">Send query</a>
             </div>
         </div>
+        <!-- ./Query Card -->
+
+        <!-- Query Result Card -->
         <div class="card">
             <div class="card-header">
                 Query Result
@@ -156,8 +155,10 @@
                 </script>
             </div>
         </div>
+        <!-- ./Query Result Card -->
     </div>
     <!-- ./Content -->
+
     <!-- Toast message -->
     <div id="toast-message"></div>
     <!-- ./Toast message -->

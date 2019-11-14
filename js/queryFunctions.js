@@ -1,20 +1,18 @@
 function init() {
-    if(window.localStorage.getItem("id") === null){
+    if (window.localStorage.getItem("id") === null) {
         window.localStorage.setItem("id", 1);
         log("id successfully initialized to value 1");
     }
 
-    if(window.localStorage.getItem("currentId") === null){
-        window.localStorage.setItem("currentId",-1);
+    if (window.localStorage.getItem("currentId") === null) {
+        window.localStorage.setItem("currentId", -1);
         log("currentId successfully initialized to value -1");
     }
 
-    if(window.localStorage.getItem("currentVersion") === null){
+    if (window.localStorage.getItem("currentVersion") === null) {
         window.localStorage.setItem("currentVersion", -1);
         log("currentVersionId successfully initialized to value -1");
     }
-
-    //TODO: načíst query podle currentId, pokud je currentId == -1, tak vezmeme třeba první query
 }
 
 function addNewQuery() {
@@ -23,14 +21,14 @@ function addNewQuery() {
     var myQuery = new Query(id, getQueryName(), getQueryDescription(), getEndPointUrl(), getTagsArray(), getSparqlQuery(), 1);
     //var ver = myQuery.version;
 
-    window.localStorage.setItem(id,JSON.stringify({lastVersion: 1, queries : [myQuery]}));
+    window.localStorage.setItem(id, JSON.stringify({lastVersion: 1, queries: [myQuery]}));
     return getQueryById(id);
 }
 
 function incrementId() {
     var id = window.localStorage.getItem("id");
     id++;
-    window.localStorage.setItem("id",id);
+    window.localStorage.setItem("id", id);
 }
 
 function addNewVersion() {
@@ -42,9 +40,9 @@ function addNewVersion() {
     var lastVersion = parsed.lastVersion;
     lastVersion++;
 
-    arr.push(new Query(currId, getQueryName(), getQueryDescription(), getEndPointUrl(),getTagsArray(),getSparqlQuery(), lastVersion))
+    arr.push(new Query(currId, getQueryName(), getQueryDescription(), getEndPointUrl(), getTagsArray(), getSparqlQuery(), lastVersion))
 
-    window.localStorage.setItem(currId,JSON.stringify({lastVersion: lastVersion, queries : arr}));
+    window.localStorage.setItem(currId, JSON.stringify({lastVersion: lastVersion, queries: arr}));
 
     /*for (i = 0; i < arr.length; i++) {
         //tmp = JSON.parse(arr[i])
@@ -66,20 +64,16 @@ function deleteVersion() {
     var index;
     var lastVersion = parsed.lastVersion;
 
-    for (i = 0; i < arr.length; i++) {
-        if (arr[i]._version == currVer){
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i]._version == currVer) {
             index = i;
             break;
         }
     }
 
-    arr.splice(index,1);
+    arr.splice(index, 1);
 
-    window.localStorage.setItem(currId,JSON.stringify({lastVersion: lastVersion, queries : arr}));
-}
-
-function deleteQuery() {
-    //TODO: pres Sidebar
+    window.localStorage.setItem(currId, JSON.stringify({lastVersion: lastVersion, queries: arr}));
 }
 
 /**
@@ -87,10 +81,10 @@ function deleteQuery() {
  * @param json
  * @returns {Query[]}
  */
-function jsonToArray(json){
+function jsonToArray(json) {
     var result = [];
     var keys = Object.keys(json);
-    keys.forEach(function(key){
+    keys.forEach(function (key) {
         result.push(json[key]);
     });
     return result;
@@ -126,23 +120,23 @@ function getPrevVersion() {
     var minDiff = 10000;
     var minDiffIndex = -1;
 
-    if (arr.length > 1){ //mozna neni treba
+    if (arr.length > 1) { //mozna neni treba
         for (i = 0; i < arr.length; i++) {
             var temp = currVer - arr[i]._version;
-            if (temp > 0 && temp < minDiff){
+            if (temp > 0 && temp < minDiff) {
                 minDiff = temp;
                 minDiffIndex = i;
             }
         }
 
-        if (minDiffIndex == -1){ //mozna neni treba kdyz kontrola na frontendu
+        if (minDiffIndex == -1) { //mozna neni treba kdyz kontrola na frontendu
             return null;
-        } else{
+        } else {
             //window.log(arr[minDiffIndex]);
             window.localStorage.setItem("currentVersion", arr[minDiffIndex]._version);
             return arr[minDiffIndex];
         }
-    } else{
+    } else {
         return null;
     }
 }
@@ -165,23 +159,23 @@ function getNextVersion() {
     var minDiff = 10000;
     var minDiffIndex = -1;
 
-    if (arr.length > 1){ //mozna neni treba
+    if (arr.length > 1) { //mozna neni treba
         for (i = 0; i < arr.length; i++) {
             var temp = arr[i]._version - currVer;
-            if (temp > 0 && temp < minDiff){
+            if (temp > 0 && temp < minDiff) {
                 minDiff = temp;
                 minDiffIndex = i;
             }
         }
 
-        if (minDiffIndex == -1){ //mozna neni treba kdyz kontrola na frontendu
+        if (minDiffIndex == -1) { //mozna neni treba kdyz kontrola na frontendu
             return null;
-        } else{
+        } else {
             //window.log(arr[minDiffIndex]);
             window.localStorage.setItem("currentVersion", arr[minDiffIndex]._version);
             return arr[minDiffIndex];
         }
-    } else{
+    } else {
         return null;
     }
 }
@@ -193,14 +187,14 @@ function getNextVersion() {
 function getAllQueries() {
     var id;
     var result = [];
-    if(window.localStorage.getItem("id") !== null){
+    if (window.localStorage.getItem("id") !== null) {
         id = window.localStorage.getItem("id");
         var i;
         var j;
         var len = window.localStorage.length;
-        for (i = 0; i < len; i++){
+        for (i = 0; i < len; i++) {
             var k = window.localStorage.key(i);
-            if (k != "id" && k != "currentId" && k != "currentVersion"){ //upravit pokud pridame globalni promennou
+            if (k != "id" && k != "currentId" && k != "currentVersion") { //upravit pokud pridame globalni promennou
                 result.push(getQueryById(k));
             }
         }
@@ -216,7 +210,7 @@ function getAllQueries() {
  */
 function getQueryById(queryId) {
     var value = window.localStorage.getItem(queryId);
-    if (value === null){
+    if (value === null) {
         return null;
     }
     var parsed = JSON.parse(value);
@@ -225,7 +219,7 @@ function getQueryById(queryId) {
     var maxVerIndex = -1;
 
     for (j = 0; j < arr.length; j++) {
-        if (arr[j]._version > maxVer){
+        if (arr[j]._version > maxVer) {
             maxVer = arr[j]._version;
             maxVerIndex = j;
         }

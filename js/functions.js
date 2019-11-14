@@ -1,23 +1,23 @@
 /**
  * Check valid input URL.
  *
- * @param stringUrl			input URL
- * @returns {boolean}		boolean
+ * @param stringUrl            input URL
+ * @returns {boolean}        boolean
  */
 function isURL(stringUrl) {
-    var pattern = new RegExp('^(https?:\\/\\/)?'+ //	 protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    var pattern = new RegExp('^(https?:\\/\\/)?' + //	 protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
     return pattern.test(stringUrl);
 }
 
 function checkResponse(response, isSuccess) {
-    if(isSuccess && response.includes(queryHeader)){
+    if (isSuccess && response.includes(queryHeader)) {
         setUrlEndpointButtonOnSuccess();
-    }else {
+    } else {
         setUrlEndpointButtonOnError();
     }
 }
@@ -29,11 +29,11 @@ function log(message) {
 function buildSideBarItem(query) {
 
     var item = sideBarItem1 + query._id
-                + sideBarItem2 + query._id
-                + sideBarItem3 + query._id
-                + sideBarItem4 + query._name
-                + sideBarItem5 + query._desc
-                + sideBarItem6;
+        + sideBarItem2 + query._id
+        + sideBarItem3 + query._id
+        + sideBarItem4 + query._name
+        + sideBarItem5 + query._desc
+        + sideBarItem6;
 
     var tagsArray = query._tags;
 
