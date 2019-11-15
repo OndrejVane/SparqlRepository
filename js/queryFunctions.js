@@ -217,6 +217,7 @@ function getQueryById(queryId) {
     var arr = jsonToArray(parsed.queries);
     var maxVer = -1;
     var maxVerIndex = -1;
+    var j;
 
     for (j = 0; j < arr.length; j++) {
         if (arr[j]._version > maxVer) {
@@ -250,4 +251,31 @@ function getCurrentQuery() {
 
 function setCurrentVersion(currentVersionId) {
     window.localStorage.setItem(currentVersion, currentVersionId);
+}
+
+/**
+ *
+ * @param queryId
+ * @returns {Query|null}
+ */
+function getQueryByIdAndByVersion(queryId, queryVer) {
+    var value = window.localStorage.getItem(queryId);
+    if (value === null) {
+        return null;
+    }
+    var parsed = JSON.parse(value);
+    var arr = jsonToArray(parsed.queries);
+    var j;
+
+    for (j = 0; j < arr.length; j++) {
+        if (arr[j]._version == queryVer) {
+            window.log(arr[j]);
+            return  arr[j];
+        }
+    }
+    return null;
+}
+
+function deleteQueryById(queryId) {
+    window.localStorage.removeItem(queryId);
 }
