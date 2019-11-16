@@ -45,6 +45,17 @@ function getCurrentQueryId() {
     return parseInt(currentIdText);
 }
 
+/**
+ * Load value of current query version from local storage
+ * and return as number
+ *
+ * @returns {number} current query version
+ */
+function getCurrentQueryVersion() {
+    let currentVersion = window.localStorage.getItem("currentVersion");
+    return parseInt(currentVersion);
+}
+
 function getTagsValuesElement() {
     return document.getElementById("tags-values");
 }
@@ -57,7 +68,7 @@ function getTagsArray() {
     let tagInputElement = getTagsValuesElement();
     if (tagInputElement === null) {
         if (getCurrentQueryId() !== -1) {
-            return getCurrentQuery()._tags;
+            return getCurrentVersionQuery()._tags;
         } else {
             return [];
         }

@@ -31,7 +31,7 @@ window.onload = function () {
     log("Page after init");
     showAllQueries();
     log("Queries loaded");
-    renderCurrentQuery();
+    renderQuery(getCurrentQuery());
     log("Current query rendered");
 };
 
@@ -61,7 +61,8 @@ function deleteQueryWithId(id) {
  */
 function showQueryWithId(id) {
     setCurrentQueryId(id);
-    renderCurrentQuery();
+    renderQuery(getCurrentQuery());
+    handleNextAndPrevButton();
 }
 
 function saveNewQuery() {
@@ -91,7 +92,26 @@ function onQueryChange() {
     }
 }
 
+function showPreviousQueryVersion() {
+    setViewMode();
+    let prevVersionQuery = getPrevVersion();
+    log("Prev version: ");
+    log(prevVersionQuery);
+    if (prevVersionQuery !== null) {
+        renderQuery(prevVersionQuery);
+    }
 
+    handleNextAndPrevButton();
+}
 
+function showNextQueryVersion() {
+    setViewMode();
+    let nextVersionQuery = getNextVersion();
+    log("Next version: ");
+    log(nextVersionQuery);
+    if (nextVersionQuery !== null) {
+        renderQuery(nextVersionQuery);
+    }
 
-
+    handleNextAndPrevButton();
+}

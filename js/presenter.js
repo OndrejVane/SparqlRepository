@@ -91,8 +91,7 @@ function removeQueryFromViewById(id) {
     $(queryId).empty();
 }
 
-function renderCurrentQuery() {
-    let currentQuery = getCurrentQuery();
+function renderQuery(currentQuery) {
     if ( currentQuery === null ){
         setFormClearForNewQuery();
         return;
@@ -111,6 +110,8 @@ function renderCurrentQuery() {
     getSparqlQueryField().value = currentQuery._body;
 
     renderTagsForCurrentQuery(currentQuery._tags);
+
+    handleNextAndPrevButton();
 
 }
 

@@ -107,9 +107,7 @@ function getSearchedQuery() {
  * @returns {Query|null}
  */
 function getPrevVersion() {
-    //TODO: kontrola zda nejake query zobrazeno -> sedive tlacitko
-    // kdyz arr.length == 1 -> sedive tlacitko
-    // zmenit currentVersion -> ja provadim zmenu (nebo ty na frontendu)
+    // sedivé talčítko -> na frontendu ;)
 
     var currId = window.localStorage.getItem("currentId");
     var currVer = window.localStorage.getItem("currentVersion");
@@ -133,11 +131,41 @@ function getPrevVersion() {
             return null;
         } else {
             //window.log(arr[minDiffIndex]);
-            window.localStorage.setItem("currentVersion", arr[minDiffIndex]._version);
+            setCurrentVersion(arr[minDiffIndex]._version);
             return arr[minDiffIndex];
         }
     } else {
         return null;
+    }
+}
+
+function hasPrevVersion() {
+
+    var currId = window.localStorage.getItem("currentId");
+    var currVer = window.localStorage.getItem("currentVersion");
+    var value = window.localStorage.getItem(currId);
+    var parsed = JSON.parse(value);
+    var arr = jsonToArray(parsed.queries);
+    var i;
+    var minDiff = 10000;
+    var minDiffIndex = -1;
+
+    if (arr.length > 1) { //mozna neni treba
+        for (i = 0; i < arr.length; i++) {
+            var temp = currVer - arr[i]._version;
+            if (temp > 0 && temp < minDiff) {
+                minDiff = temp;
+                minDiffIndex = i;
+            }
+        }
+
+        if (minDiffIndex === -1) { //mozna neni treba kdyz kontrola na frontendu
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
     }
 }
 
@@ -146,9 +174,7 @@ function getPrevVersion() {
  * @returns {Query|null}
  */
 function getNextVersion() {
-    //TODO: kontrola zda nejake query zobrazeno -> sedive tlacitko
-    // kdyz arr.length == 1 -> sedive tlacitko
-    // zmenit currentVersion -> ja provadim zmenu
+    // sediva tlačítko -> nastaveno na frontendu
 
     var currId = window.localStorage.getItem("currentId");
     var currVer = window.localStorage.getItem("currentVersion");
@@ -180,6 +206,36 @@ function getNextVersion() {
     }
 }
 
+function hasNextVersion() {
+    // sediva tlačítko -> nastaveno na frontendu
+
+    var currId = window.localStorage.getItem("currentId");
+    var currVer = window.localStorage.getItem("currentVersion");
+    var value = window.localStorage.getItem(currId);
+    var parsed = JSON.parse(value);
+    var arr = jsonToArray(parsed.queries);
+    var i;
+    var minDiff = 10000;
+    var minDiffIndex = -1;
+
+    if (arr.length > 1) { //mozna neni treba
+        for (i = 0; i < arr.length; i++) {
+            var temp = arr[i]._version - currVer;
+            if (temp > 0 && temp < minDiff) {
+                minDiff = temp;
+                minDiffIndex = i;
+            }
+        }
+
+        if (minDiffIndex == -1) { //mozna neni treba kdyz kontrola na frontendu
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
 /**
  *
  * @returns {Query[]}
@@ -247,6 +303,12 @@ function setCurrentQueryId(queryId) {
 function getCurrentQuery() {
     let currentId = getCurrentQueryId();
     return getQueryById(currentId);
+}
+
+function getCurrentVersionQuery() {
+    let currentId = getCurrentQueryId();
+    let currentVersion = getCurrentQueryVersion();
+    return getQueryByIdAndByVersion(currentId, currentVersion);
 }
 
 function setCurrentVersion(currentVersionId) {

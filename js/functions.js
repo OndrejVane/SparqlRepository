@@ -60,7 +60,7 @@ function buildTagForContent(tagName) {
  */
 function setTagsEditable(isEditable) {
     let tagListElement = $('#tag-list');
-    let currentQuery = getCurrentQuery();
+    let currentQuery = getCurrentVersionQuery();
 
     if (isEditable) {
         let tagInput;
@@ -95,5 +95,22 @@ function setTagsEditable(isEditable) {
     } else {
         renderTagsForCurrentQuery(currentQuery._tags);
     }
+}
 
+/**
+ * Function which is setting disable and
+ * enable Next and Previous bttuon.
+ */
+function handleNextAndPrevButton() {
+    if (hasPrevVersion()) {
+        setPrevButtonEnable();
+    } else {
+        setPrevButtonDisabled();
+    }
+
+    if (hasNextVersion()) {
+        setNextButtonEnable()
+    } else {
+        setNextButtonDisable();
+    }
 }
