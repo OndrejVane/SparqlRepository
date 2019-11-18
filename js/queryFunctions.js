@@ -266,6 +266,7 @@ function getAllQueries() {
  */
 function getQueryById(queryId) {
     var value = window.localStorage.getItem(queryId);
+    log("value: " + value);
     if (value === null) {
         return null;
     }
@@ -315,6 +316,10 @@ function setCurrentVersion(currentVersionId) {
     window.localStorage.setItem(currentVersion, currentVersionId);
 }
 
+function setId(newId) {
+    window.localStorage.setItem(id, newId);
+}
+
 /**
  *
  * @param queryId
@@ -340,4 +345,61 @@ function getQueryByIdAndByVersion(queryId, queryVer) {
 
 function deleteQueryById(queryId) {
     window.localStorage.removeItem(queryId);
+}
+
+/**
+ * Function which will get all queries from local
+ * storage for export.
+ *
+ * @returns {string}
+ */
+function getAllQueriesForExport() {
+    let id = getIdFromLs();
+    let queries = "";
+
+    for (let i = 0; i < id; i++) {
+        let query = localStorage.getItem(i.toString());
+        if (query) {
+            queries = queries + i + "=" + query + endLineChar + newLineChar;
+        }
+    }
+
+    return queries;
+}
+
+/**
+ * This function will save all data from imported file
+ * to the local storage.
+ *
+ * @param {string}content
+ */
+function setAllQueriesFromImport(content) {
+    let array = content.split(endLineChar);
+    for (let i = 0; i < (array.length - 1); i++) {
+        switch(i) {
+            case 0:
+                log(array[0]);
+                break;
+            case 1:
+                log(array[1]);
+                break;
+            case 2:
+                let newId = getStringAfterChar(array[i]);
+                setId(newId);
+                break;
+            case 3:
+                let newCurId = getStringAfterChar(array[i]);
+                setCurrentQueryId(newCurId);
+                break;
+            case 4:
+                let newCurVer = getStringAfterChar(array[i]);
+                setCurrentVersion(newCurVer);
+                break;
+            default:
+                let queryId = getStringBeforeChar(array[i]).substr(1);
+                let queryData = getStringAfterChar(array[i]);
+                window.localStorage.setItem(queryId, queryData);
+        }
+    }
+    showToast(DATA_IMPORTED);
 }

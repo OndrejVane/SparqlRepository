@@ -84,3 +84,15 @@ function getSaveButtonElement() {
 function getCardHeader() {
     return document.getElementById('card-header');
 }
+
+function getExportButtonElement() {
+    return document.getElementById("export-button");
+}
+
+function getImportButtonElement() {
+    return document.getElementById('import-button');
+}
+
+function getIdFromLs() {
+    return window.localStorage.getItem(id);
+}

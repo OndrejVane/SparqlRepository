@@ -55,4 +55,16 @@ var tagForTagInput2 = '<input type="text" class="labelinput" onkeyup="onQueryCha
 const id = "id";
 const currentId = "currentId";
 const currentVersion = "currentVersion";
+
 const delimiter = "¤";
+const version = 1.0;
+const versionTag = "version=";
+const dateTag = "date=";
+const idTag = "id=";
+const currentQueryIdTag = "currentQueryId=";
+const currentVersionIdTag = "currentVersionId=";
+const newLineChar = '\n';
+const endLineChar = '¶';
+const exportName = "export";
+const exportSuffix = ".sprqlr";
+const exportFileName = exportName + exportSuffix;

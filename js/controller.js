@@ -133,3 +133,31 @@ function send() {
     sendQuery(query, endpoint, printResponse);
     showToast(QUERY_SEND);
 }
+
+function exportData(){
+    let exportData = createHeaderForExport();
+    exportData = exportData + getAllQueriesForExport();
+
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(exportData));
+    element.setAttribute('download', exportFileName);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+
+    showToast(DATA_EXPORTED);
+}
+
+function importData() {
+    let element = document.createElement('input');
+    element.setAttribute('id', 'file-input');
+    element.setAttribute('type', 'file');
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+    element.click();
+    document.body.removeChild(element);
+}

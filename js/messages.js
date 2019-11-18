@@ -11,3 +11,5 @@ const CARD_HEADER_VIEW = CARD_HEADER_QUERY_EXPLORER + " - " + CARD_HEADER_VIEW_M
 const SAVED_VERSION_SUCCESS = "New version has been successfully save";
 const DELIMITER_QUESTION = "Please enter some variable instead of sequence ¤*¤: ";
 const QUERY_SEND = "Query has been send";
+const DATA_EXPORTED = "Data has been successfully exported";
+const DATA_IMPORTED = "Data has been successfully imported, pres F5.";

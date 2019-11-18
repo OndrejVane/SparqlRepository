@@ -33,18 +33,7 @@
         <script src="js/messages.js"></script>
 
         <!-- Sparql logo favicon -->
-        <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-        <link rel="manifest" href="./favicon/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
+        <link rel='icon' href='favicon/favicon.png' type='image/png'/>
 
     </head>
 
@@ -57,8 +46,8 @@
         </div>
         <div class="navigation-buttons">
             <a href="#" class="btn btn-primary new-query-button" onclick="setFormClearForNewQuery()" title="Create new sparql query">New query</a>
-            <a href="#" class="btn btn-outline-primary export-import-button">Export</a>
-            <a href="#" class="btn btn-outline-primary export-import-button">Import</a>
+            <a href="#" id="export-button" class="btn btn-outline-primary export-import-button" onclick="exportData()">Export</a>
+            <a href="#" id="import button" class="btn btn-outline-primary export-import-button" onclick="importData()">Import</a>
         </div>
     </div>
     <!-- ./Search box -->
