@@ -161,3 +161,11 @@ function setNextButtonEnable() {
 function addTitleToTheCardHeader(message) {
     getCardHeader().innerHTML = message;
 }
+
+function printResponse(response, isSuccess) {
+    if(isSuccess){
+        log(response);
+    }else {
+        log("Ajax failed");
+    }
+}

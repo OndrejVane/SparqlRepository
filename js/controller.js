@@ -115,3 +115,11 @@ function showNextQueryVersion() {
 
     handleNextAndPrevButton();
 }
+
+function send() {
+    let endpoint = getEndPointUrl();
+    let query = getSparqlQuery();
+    //TODO: zkontrolovat, jestli dotaz neobsahuje nějakou sekvenci ¤hodnota¤
+
+    sendQuery(query, endpoint, printResponse);
+}
