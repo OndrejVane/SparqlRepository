@@ -114,3 +114,27 @@ function handleNextAndPrevButton() {
         setNextButtonDisable();
     }
 }
+
+/**
+ * Function will check if query contains
+ * sequence with ¤value¤.
+ *
+ * @param {String} query
+ */
+function checkIfContainsDelimiter(query) {
+    let regex = RegExp('[' + delimiter + '][a-zA-Z0-9{ščřžýáíéó}]*[' + delimiter + ']');
+
+    return regex.test(query);
+}
+
+/**
+ * Function will replace sequence ¤value¤
+ * in query with variable.
+ *
+ * @param {String} query
+ * @param {String} variable
+ */
+function replaceVariableInQuery(query, variable) {
+    let regex = RegExp('[' + delimiter + '][a-zA-Z0-9{ščřžýáíéó}]*[' + delimiter + ']');
+    return query.replace(regex, variable);
+}

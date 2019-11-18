@@ -9,3 +9,5 @@ const CARD_HEADER_EDIT = CARD_HEADER_QUERY_EXPLORER + " - " + CARD_HEADER_EDIT_M
 const CARD_HEADER_NEW = CARD_HEADER_QUERY_EXPLORER + " - " + CARD_HEADER_NEW_MESSAGE;
 const CARD_HEADER_VIEW = CARD_HEADER_QUERY_EXPLORER + " - " + CARD_HEADER_VIEW_MESSAGE;
 const SAVED_VERSION_SUCCESS = "New version has been successfully save";
+const DELIMITER_QUESTION = "Please enter some variable instead of sequence ¤*¤: ";
+const QUERY_SEND = "Query has been send";

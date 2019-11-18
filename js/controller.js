@@ -119,7 +119,17 @@ function showNextQueryVersion() {
 function send() {
     let endpoint = getEndPointUrl();
     let query = getSparqlQuery();
-    //TODO: zkontrolovat, jestli dotaz neobsahuje nějakou sekvenci ¤hodnota¤
+
+    if (checkIfContainsDelimiter(query)) {
+        let variable = prompt(DELIMITER_QUESTION,);
+
+        while (variable === null || variable === "") {
+            variable = prompt(DELIMITER_QUESTION,);
+        }
+
+        query = replaceVariableInQuery(query, variable);
+    }
 
     sendQuery(query, endpoint, printResponse);
+    showToast(QUERY_SEND);
 }

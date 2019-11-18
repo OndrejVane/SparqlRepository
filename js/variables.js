@@ -55,3 +55,4 @@ var tagForTagInput2 = '<input type="text" class="labelinput" onkeyup="onQueryCha
 const id = "id";
 const currentId = "currentId";
 const currentVersion = "currentVersion";
+const delimiter = "¤";
