@@ -164,8 +164,25 @@ function addTitleToTheCardHeader(message) {
 
 function printResponse(response, isSuccess) {
     if(isSuccess){
-        log(response);
+        let parsedResponse = JSON.parse(response);
+        let header = parseHeaderDataForTable(parsedResponse.head.vars);
+        let data = parseResultDataForTable(parsedResponse.results);
+
+        var table = new Tabulator("#example-table", {
+            height:"400px",
+            layout:"fitColumns",
+            //layout:"fitDataFill",
+            pagination:"local",
+            paginationSize:10,
+            paginationSizeSelector:[5,10,20,40],
+            movableColumns:true,
+            columns:header,
+            data:data
+
+
+        });
     }else {
         log("Ajax failed");
+        showToast(QUERY_FAIL);
     }
 }

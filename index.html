@@ -14,6 +14,9 @@
         <script src="dependencies/sensei-grid-0.3.14/dist/sensei-grid.js"></script>
         <link rel="stylesheet" href="dependencies/bootstrap-tags-tnput/tagInput.css">
         <script src="dependencies/bootstrap-tags-tnput/tagInput.js"></script>
+        <link href="dependencies/tabulator-master/dist/css/tabulator.min.css" rel="stylesheet">
+        <script type="text/javascript" src="dependencies/tabulator-master/dist/js/tabulator.min.js"></script>
+        <link href="dependencies/tabulator-master/dist/css/tabulator_simple.min.css" rel="stylesheet">
 
         <!-- Own styles include -->
         <link rel="stylesheet" type="text/css" href="./css/sidebar.css">
@@ -119,31 +122,9 @@
             <div class="card-header">
                 Query Result
             </div>
-            <div class="card-body">
-                <div class="example">
-
-                </div>
-
-                <script>
-                    var data = [
-                        {id: 1, data1: "test"},
-                        {id: 2, data2: "foo bar"}
-                    ];
-
-                    var columns = [
-                        {name: "id", type: "string"},
-                        {name: "data1", type: "string"},
-                        {name: "data2", type: "string"},
-                        {name: "data3", type: "string"},
-                        {name: "data4", type: "string"}
-
-                    ];
-
-                    var grid = $(".example").grid(data, columns);
-
-                    grid.registerEditor(BasicEditor);
-                    grid.render();
-                </script>
+            <div class="card-body card-result">
+                <div id="example-table"></div>
+                <!-- Here will be render data from response -->
             </div>
         </div>
         <!-- ./Query Result Card -->

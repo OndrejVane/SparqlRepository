@@ -17,3 +17,7 @@ div.content {
     display: inline;
     margin: 3px;
 }
+
+.card-result {
+    padding: 0;
+}

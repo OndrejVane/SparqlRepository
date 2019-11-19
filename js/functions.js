@@ -217,3 +217,33 @@ function getStringAfterChar(string) {
 function getStringBeforeChar(string) {
     return string.split('=')[0];
 }
+
+/**
+ * Function which will parse header from response
+ * for table.
+ *
+ * @param {Array} header
+ * @returns {Array}
+ */
+function parseHeaderDataForTable(header) {
+    let array = [];
+    for (let i = 0; i < header.length; i++) {
+        let newHeader = {};
+        newHeader["title"] = header[i];
+        newHeader["field"] = header[i];
+        newHeader["editor"] = "input";
+        array.push(newHeader);
+    }
+    return array;
+}
+
+/**
+ * Function which will parse data for table.
+ *
+ * @param {Array} data
+ * @returns {string}
+ */
+function parseResultDataForTable(data){
+    //TODO zformátovat data pro tabulku
+    return "";
+}

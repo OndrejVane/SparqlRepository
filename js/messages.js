@@ -13,3 +13,4 @@ const DELIMITER_QUESTION = "Please enter some variable instead of sequence ¤*¤
 const QUERY_SEND = "Query has been send";
 const DATA_EXPORTED = "Data has been successfully exported";
 const DATA_IMPORTED = "Data has been successfully imported, pres F5.";
+const QUERY_FAIL = "Query wasn't sent correctly";

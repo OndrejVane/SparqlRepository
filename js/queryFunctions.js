@@ -40,7 +40,7 @@ function addNewVersion() {
     var lastVersion = parsed.lastVersion;
     lastVersion++;
 
-    arr.push(new Query(currId, getQueryName(), getQueryDescription(), getEndPointUrl(), getTagsArray(), getSparqlQuery(), lastVersion))
+    arr.push(new Query(currId, getQueryName(), getQueryDescription(), getEndPointUrl(), getTagsArray(), getSparqlQuery(), lastVersion));
 
     window.localStorage.setItem(currId, JSON.stringify({lastVersion: lastVersion, queries: arr}));
 
