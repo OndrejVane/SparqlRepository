@@ -402,4 +402,5 @@ function setAllQueriesFromImport(content) {
         }
     }
     showToast(DATA_IMPORTED);
+    location.reload();
 }
