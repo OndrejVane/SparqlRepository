@@ -120,7 +120,7 @@ function send() {
     let endpoint = getEndPointUrl();
     let query = getSparqlQuery();
 
-    if (checkIfContainsDelimiter(query)) {
+    while (checkIfContainsDelimiter(query)) {
         let variable = prompt(DELIMITER_QUESTION,);
 
         while (variable === null || variable === "") {
@@ -130,6 +130,7 @@ function send() {
         query = replaceVariableInQuery(query, variable);
     }
 
+    log("Sent: " + query);
     sendQuery(query, endpoint, printResponse);
     showToast(QUERY_SEND);
 }
