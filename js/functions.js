@@ -238,12 +238,21 @@ function parseHeaderDataForTable(header) {
 }
 
 /**
- * Function which will parse data for table.
+ ** Function which will parse data for table.
  *
  * @param {Array} data
- * @returns {string}
+ * @param {Array} header
+ * @returns {Array}
  */
-function parseResultDataForTable(data){
-    //TODO zformátovat data pro tabulku
-    return "";
+function parseResultDataForTable(data, header){
+    log("Header" + header.length);
+    let array = [];
+    for (var i = 0; i < data.bindings.length; i++) {
+        var newRow = {};
+        for (var j = 0; j < header.length; j++) {
+            newRow[header[j]] = data.bindings[i][header[j]].value;
+        }
+        array.push(newRow);
+    }
+    return array;
 }

@@ -166,10 +166,10 @@ function printResponse(response, isSuccess) {
     if(isSuccess){
         let parsedResponse = JSON.parse(response);
         let header = parseHeaderDataForTable(parsedResponse.head.vars);
-        let data = parseResultDataForTable(parsedResponse.results);
+        let data = parseResultDataForTable(parsedResponse.results, parsedResponse.head.vars);
 
         var table = new Tabulator("#example-table", {
-            height:"400px",
+            height:"600px",
             layout:"fitColumns",
             //layout:"fitDataFill",
             pagination:"local",
