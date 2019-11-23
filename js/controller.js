@@ -164,7 +164,7 @@ function importData() {
 }
 
 function downloadCSV() {
-    if (table == null) {
+    if (table) {
         table.download("csv", "data.csv", {delimiter: ";"});
     } else {
         showToast(TABLE_IS_EMPTY);
@@ -172,7 +172,7 @@ function downloadCSV() {
 }
 
 function downloadJSON() {
-    if (table == null) {
+    if (table) {
         table.download("json", "data.json");
     } else {
         showToast(TABLE_IS_EMPTY);
@@ -180,7 +180,7 @@ function downloadJSON() {
 }
 
 function downloadXLSX() {
-    if (table == null) {
+    if (table) {
         table.download("xlsx", "data.xlsx", {sheetName: "My Data"});
     } else {
         showToast(TABLE_IS_EMPTY);
@@ -188,7 +188,7 @@ function downloadXLSX() {
 }
 
 function downloadPDF() {
-    if (table == null) {
+    if (table) {
         table.download("pdf", "data.pdf", {
             orientation: "portrait",
             title: "Query result",
