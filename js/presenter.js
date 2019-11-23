@@ -168,7 +168,7 @@ function printResponse(response, isSuccess) {
         let header = parseHeaderDataForTable(parsedResponse.head.vars);
         let data = parseResultDataForTable(parsedResponse.results, parsedResponse.head.vars);
 
-        var table = new Tabulator("#example-table", {
+        table = new Tabulator("#example-table", {
             height:"600px",
             layout:"fitColumns",
             //layout:"fitDataFill",

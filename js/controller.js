@@ -162,3 +162,38 @@ function importData() {
     element.click();
     document.body.removeChild(element);
 }
+
+function downloadCSV() {
+    if (table == null) {
+        table.download("csv", "data.csv", {delimiter: ";"});
+    } else {
+        showToast(TABLE_IS_EMPTY);
+    }
+}
+
+function downloadJSON() {
+    if (table == null) {
+        table.download("json", "data.json");
+    } else {
+        showToast(TABLE_IS_EMPTY);
+    }
+}
+
+function downloadXLSX() {
+    if (table == null) {
+        table.download("xlsx", "data.xlsx", {sheetName: "My Data"});
+    } else {
+        showToast(TABLE_IS_EMPTY);
+    }
+}
+
+function downloadPDF() {
+    if (table == null) {
+        table.download("pdf", "data.pdf", {
+            orientation: "portrait",
+            title: "Query result",
+        });
+    } else {
+        showToast(TABLE_IS_EMPTY);
+    }
+}

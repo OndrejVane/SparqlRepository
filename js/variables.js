@@ -68,3 +68,6 @@ const endLineChar = '¶';
 const exportName = "export";
 const exportSuffix = ".sprqlr";
 const exportFileName = exportName + exportSuffix;
+
+// global variable for table
+var table;
