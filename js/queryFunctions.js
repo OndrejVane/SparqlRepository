@@ -368,12 +368,13 @@ function getAllQueriesForExport() {
 }
 
 /**
- * This function will save all data from imported file
- * to the local storage.
+ * This function will first delete all data from LS and
+ * save all data from imported file to the local storage.
  *
  * @param {string}content
  */
 function setAllQueriesFromImport(content) {
+    window.localStorage.clear();
     let array = content.split(endLineChar);
     for (let i = 0; i < (array.length - 1); i++) {
         switch(i) {
