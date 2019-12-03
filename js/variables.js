@@ -34,6 +34,9 @@ let sideBarItem6 = '</label>' +
     '<div class="side_item_tags">';
 // tags
 let sideBarItem7 = '</div>' +
+    '<label type="hidden" style="display:none">';
+
+let sideBarItem8 = '</label>' +
     '</a>' +
     '</li>';
 

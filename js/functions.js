@@ -41,8 +41,10 @@ function buildSideBarItem(query) {
         item = item + buildTagForSideItem(tagsArray[i]);
     }
 
+    item = item + sideBarItem7 +
+        query._body + sideBarItem8;
 
-    return item + sideBarItem7;
+    return item;
 }
 
 function buildTagForSideItem(tagName) {
