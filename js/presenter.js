@@ -2,18 +2,21 @@ function setUrlEndpointButtonOnSuccess() {
     var urlButton = document.getElementById("endpointButton");
     urlButton.style.backgroundColor = greenColor;
     urlButton.style.color = whiteColor;
+    urlButton.innerHTML = 'SUCCESS';
 }
 
 function setUrlEndpointButtonOnError() {
     var urlButton = document.getElementById("endpointButton");
     urlButton.style.backgroundColor = redColor;
     urlButton.style.color = whiteColor;
+    urlButton.innerHTML = 'FAILED';
 }
 
 function setUrlEndpointButtonToOrigin() {
     var urlButton = document.getElementById("endpointButton");
     urlButton.style.backgroundColor = whiteColor;
     urlButton.style.color = greyColor;
+    urlButton.innerHTML = "Test URL endpoint"
 }
 
 function setQueryInputsEditable() {
