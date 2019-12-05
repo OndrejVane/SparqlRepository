@@ -90,8 +90,9 @@ function showToast(message) {
 }
 
 function removeQueryFromViewById(id) {
-    let queryId = "#query" + id;
-    $(queryId).empty();
+    let queryId = "query" + id;
+    var element = document.getElementById(queryId);
+    element.parentNode.removeChild(element);
 }
 
 function renderQuery(currentQuery) {
