@@ -177,7 +177,7 @@ function printResponse(response, isSuccess) {
             layout:"fitColumns",
             //layout:"fitDataFill",
             pagination:"local",
-            paginationSize:10,
+            paginationSize:20,
             paginationSizeSelector:[5,10,20,40],
             movableColumns:true,
             columns:header,
