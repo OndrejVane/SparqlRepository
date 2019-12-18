@@ -1,6 +1,3 @@
-// ajax request method
-var requestMethod = "GET";
-
 // test query
 var testQuery = "SELECT ?subject ?predicate ?object\n" +
     "WHERE {\n" +
@@ -53,24 +50,6 @@ var tagForTagInput1 = '<div class="form-control tags" id="tags">';
 var tagForTagInput2 = '<input type="text" class="labelinput" onkeyup="onQueryChange()">' +
     '<input id="tags-values" type="hidden" value="" name="result">' +
     '</div>';
-
-//nam of global items stored id local storage
-const id = "id";
-const currentId = "currentId";
-const currentVersion = "currentVersion";
-
-const delimiter = "¤";
-const version = 1.0;
-const versionTag = "version=";
-const dateTag = "date=";
-const idTag = "id=";
-const currentQueryIdTag = "currentQueryId=";
-const currentVersionIdTag = "currentVersionId=";
-const newLineChar = '\n';
-const endLineChar = '¶';
-const exportName = "export";
-const exportSuffix = ".sprqlr";
-const exportFileName = exportName + exportSuffix;
 
 // global variable for table
 var table;
