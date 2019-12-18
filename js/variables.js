@@ -1,3 +1,37 @@
+
+//nam of global items stored id local storage
+const id = "id";
+const currentId = "currentId";
+const currentVersion = "currentVersion";
+
+// version of application for export
+const version = 1.0;
+
+// ajax request method
+var requestMethod = "GET";
+
+
+// delimiter for query variable
+const delimiter = "¤";
+
+// export stuff
+const versionTag = "version=";
+const dateTag = "date=";
+const idTag = "id=";
+const currentQueryIdTag = "currentQueryId=";
+const currentVersionIdTag = "currentVersionId=";
+const newLineChar = '\n';
+const endLineChar = '¶';
+
+// export default name
+const exportName = "export";
+
+// export file suffix
+const exportSuffix = ".sprqlr";
+
+// export default file name
+const exportFileName = exportName + exportSuffix;
+
 // test query
 var testQuery = "SELECT ?subject ?predicate ?object\n" +
     "WHERE {\n" +
@@ -51,10 +85,6 @@ var tagForTagInput2 = '<input type="text" class="labelinput" onkeyup="onQueryCha
     '<input id="tags-values" type="hidden" value="" name="result">' +
     '</div>';
 
-//nam of global items stored id local storage
-const id = "id";
-const currentId = "currentId";
-const currentVersion = "currentVersion";
 
 // global variable for table
 var table;
