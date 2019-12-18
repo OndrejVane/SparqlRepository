@@ -32,6 +32,9 @@ const exportSuffix = ".sprqlr";
 // export default file name
 const exportFileName = exportName + exportSuffix;
 
+// is shown short URL
+const showShortUrl = false;
+
 // test query
 var testQuery = "SELECT ?subject ?predicate ?object\n" +
     "WHERE {\n" +

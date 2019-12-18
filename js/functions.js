@@ -251,9 +251,19 @@ function parseResultDataForTable(data, header){
     for (var i = 0; i < data.bindings.length; i++) {
         var newRow = {};
         for (var j = 0; j < header.length; j++) {
-            newRow[header[j]] = data.bindings[i][header[j]].value;
+            if(showShortUrl){
+                newRow[header[j]] = parseUri(data.bindings[i][header[j]].value);
+            } else {
+                newRow[header[j]] = data.bindings[i][header[j]].value;
+            }
         }
         array.push(newRow);
     }
     return array;
+}
+
+function parseUri(uri) {
+
+    // TODO Here is possible to implement parsing URL from query
+    return "Parsed: " + uri;
 }
