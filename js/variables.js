@@ -51,5 +51,10 @@ var tagForTagInput2 = '<input type="text" class="labelinput" onkeyup="onQueryCha
     '<input id="tags-values" type="hidden" value="" name="result">' +
     '</div>';
 
+//nam of global items stored id local storage
+const id = "id";
+const currentId = "currentId";
+const currentVersion = "currentVersion";
+
 // global variable for table
 var table;

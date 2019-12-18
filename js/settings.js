@@ -4,10 +4,6 @@ const version = 1.0;
 // ajax request method
 var requestMethod = "GET";
 
-//nam of global items stored id local storage
-const id = "id";
-const currentId = "currentId";
-const currentVersion = "currentVersion";
 
 // delimiter for query variable
 const delimiter = "¤";
