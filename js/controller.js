@@ -132,7 +132,6 @@ function send() {
 
     log("Sent: " + query);
     sendQuery(query, endpoint, printResponse);
-    showToast(QUERY_SEND);
 }
 
 function exportData(){

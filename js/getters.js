@@ -96,3 +96,7 @@ function getImportButtonElement() {
 function getIdFromLs() {
     return window.localStorage.getItem(id);
 }
+
+function getErrorResponseElement() {
+    return document.getElementById('error-response');
+}

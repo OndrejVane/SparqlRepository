@@ -167,7 +167,11 @@ function addTitleToTheCardHeader(message) {
 }
 
 function printResponse(response, isSuccess) {
+
+    let errorContainer = getErrorResponseElement();
+
     if(isSuccess){
+        errorContainer.innerHTML = "";
         let parsedResponse = JSON.parse(response);
         let header = parseHeaderDataForTable(parsedResponse.head.vars);
         let data = parseResultDataForTable(parsedResponse.results, parsedResponse.head.vars);
@@ -185,7 +189,11 @@ function printResponse(response, isSuccess) {
 
 
         });
+        showToast(QUERY_SEND);
     }else {
+        // set table empty
+        table = new Tabulator("#example-table",);
+        errorContainer.innerHTML = "<b>Error message:</b> \n" + response;
         log("Ajax failed");
         showToast(QUERY_FAIL);
     }
