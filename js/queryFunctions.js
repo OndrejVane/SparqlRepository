@@ -5,8 +5,8 @@ function init() {
     }
 
     if (window.localStorage.getItem("currentId") === null) {
-        window.localStorage.setItem("currentId", -1);
-        log("currentId successfully initialized to value -1");
+        window.localStorage.setItem("currentId", 0);
+        log("currentId successfully initialized to value 0");
     }
 
     if (window.localStorage.getItem("currentVersion") === null) {
@@ -21,7 +21,7 @@ function addNewQuery() {
     var myQuery = new Query(id, getQueryName(), getQueryDescription(), getEndPointUrl(), getTagsArray(), getSparqlQuery(), 1);
     //var ver = myQuery.version;
 
-    window.localStorage.setItem(id, JSON.stringify({lastVersion: 1, queries: [myQuery]}));
+    window.localStorage.setItem("query_" + id, JSON.stringify({lastVersion: 1, queries: [myQuery]}));
     return getQueryById(id);
 }
 
@@ -42,7 +42,7 @@ function addNewVersion() {
 
     arr.push(new Query(currId, getQueryName(), getQueryDescription(), getEndPointUrl(), getTagsArray(), getSparqlQuery(), lastVersion));
 
-    window.localStorage.setItem(currId, JSON.stringify({lastVersion: lastVersion, queries: arr}));
+    window.localStorage.setItem("query_" + currId, JSON.stringify({lastVersion: lastVersion, queries: arr}));
 
     /*for (i = 0; i < arr.length; i++) {
         //tmp = JSON.parse(arr[i])
@@ -53,7 +53,7 @@ function addNewVersion() {
     //window.console.log(arr[0]);
 }
 
-function deleteVersion() {
+/*function deleteVersion() {
     //TODO: kontrola zda nejake query zobrazeno, zmenit ziskani currentVersion, kdyz smazemo posledni version -> smazat cely zaznam
 
     var currId = window.localStorage.getItem("currentId");
@@ -74,7 +74,7 @@ function deleteVersion() {
     arr.splice(index, 1);
 
     window.localStorage.setItem(currId, JSON.stringify({lastVersion: lastVersion, queries: arr}));
-}
+}*/
 
 /**
  *
@@ -90,7 +90,7 @@ function jsonToArray(json) {
     return result;
 }
 
-var currQuery;
+/*var currQuery;
 
 function getSearchedQuery() {
     //TODO: pres Sidebar - zobrazit query (vyplnit pole/vzhled), zmenit currentId
@@ -100,7 +100,7 @@ function getSearchedQuery() {
     var parsed = JSON.parse(value);
 
     currQuery = parsed; //anebo se vzdy dotazovat na db
-}
+}*/
 
 /**
  *
@@ -110,8 +110,12 @@ function getPrevVersion() {
     // sedivé talčítko -> na frontendu ;)
 
     var currId = window.localStorage.getItem("currentId");
+    //var currId = getCurrentQueryId();
     var currVer = window.localStorage.getItem("currentVersion");
     var value = window.localStorage.getItem(currId);
+    if (value === null){
+        return false;
+    }
     var parsed = JSON.parse(value);
     var arr = jsonToArray(parsed.queries);
     var i;
@@ -142,8 +146,12 @@ function getPrevVersion() {
 function hasPrevVersion() {
 
     var currId = window.localStorage.getItem("currentId");
+    //var currId = getCurrentQueryId();
     var currVer = window.localStorage.getItem("currentVersion");
     var value = window.localStorage.getItem(currId);
+    if (value === null){
+        return false;
+    }
     var parsed = JSON.parse(value);
     var arr = jsonToArray(parsed.queries);
     var i;
@@ -176,9 +184,13 @@ function hasPrevVersion() {
 function getNextVersion() {
     // sediva tlačítko -> nastaveno na frontendu
 
-    var currId = window.localStorage.getItem("currentId");
+    //var currId = window.localStorage.getItem("currentId");
+    var currId = getCurrentQueryId();
     var currVer = window.localStorage.getItem("currentVersion");
     var value = window.localStorage.getItem(currId);
+    if (value === null){
+        return false;
+    }
     var parsed = JSON.parse(value);
     var arr = jsonToArray(parsed.queries);
     var i;
@@ -209,9 +221,13 @@ function getNextVersion() {
 function hasNextVersion() {
     // sediva tlačítko -> nastaveno na frontendu
 
-    var currId = window.localStorage.getItem("currentId");
+    //var currId = window.localStorage.getItem("currentId");
+    var currId = getCurrentQueryId();
     var currVer = window.localStorage.getItem("currentVersion");
     var value = window.localStorage.getItem(currId);
+    if (value === null){
+        return false;
+    }
     var parsed = JSON.parse(value);
     var arr = jsonToArray(parsed.queries);
     var i;
@@ -241,17 +257,18 @@ function hasNextVersion() {
  * @returns {Query[]}
  */
 function getAllQueries() {
-    var id;
     var result = [];
     if (window.localStorage.getItem("id") !== null) {
-        id = window.localStorage.getItem("id");
         var i;
-        var j;
         var len = window.localStorage.length;
         for (i = 0; i < len; i++) {
             var k = window.localStorage.key(i);
             if (k != "id" && k != "currentId" && k != "currentVersion") { //upravit pokud pridame globalni promennou
-                result.push(getQueryById(k));
+                //result.push(getQueryById(k));
+                var tmp = k.split("_");
+                if (tmp[0] = "query" && Number.isInteger(tmp[1])){
+                    result.push(getQueryById(tmp[1]));
+                }
             }
         }
     }
@@ -265,7 +282,7 @@ function getAllQueries() {
  * @returns {Query|null}
  */
 function getQueryById(queryId) {
-    var value = window.localStorage.getItem(queryId);
+    var value = window.localStorage.getItem("query_" + queryId);
     log("value: " + value);
     if (value === null) {
         return null;
@@ -287,7 +304,7 @@ function getQueryById(queryId) {
 }
 
 function deleteQueryById(queryId) {
-    window.localStorage.removeItem(queryId);
+    window.localStorage.removeItem("query_" + queryId);
 }
 
 
@@ -298,7 +315,7 @@ function deleteQueryById(queryId) {
  * @param queryId
  */
 function setCurrentQueryId(queryId) {
-    window.localStorage.setItem(currentId, queryId);
+    window.localStorage.setItem(currentId, "query_" + queryId);
 }
 
 function getCurrentQuery() {
@@ -326,7 +343,7 @@ function setId(newId) {
  * @returns {Query|null}
  */
 function getQueryByIdAndByVersion(queryId, queryVer) {
-    var value = window.localStorage.getItem(queryId);
+    var value = window.localStorage.getItem("query_" + queryId);
     if (value === null) {
         return null;
     }
@@ -344,7 +361,7 @@ function getQueryByIdAndByVersion(queryId, queryVer) {
 }
 
 function deleteQueryById(queryId) {
-    window.localStorage.removeItem(queryId);
+    window.localStorage.removeItem("query_" + queryId);
 }
 
 /**
@@ -399,7 +416,7 @@ function setAllQueriesFromImport(content) {
             default:
                 let queryId = getStringBeforeChar(array[i]).substr(1);
                 let queryData = getStringAfterChar(array[i]);
-                window.localStorage.setItem(queryId, queryData);
+                window.localStorage.setItem("query_" + queryId, queryData);
         }
     }
     showToast(DATA_IMPORTED);

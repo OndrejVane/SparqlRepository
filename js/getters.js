@@ -41,8 +41,12 @@ function getToastMessage() {
  * @returns {number} current query id
  */
 function getCurrentQueryId() {
-    let currentIdText = window.localStorage.getItem(currentId);
-    return parseInt(currentIdText);
+    var currentIdText = window.localStorage.getItem("currentId");
+    var tmp = currentIdText.split("_");
+    if (tmp[0] = "query" && Number.isInteger(tmp[1])){
+        return parseInt(tmp[1]);
+    }
+    return 0;
 }
 
 /**
@@ -67,7 +71,7 @@ function getTagsValuesElement() {
 function getTagsArray() {
     let tagInputElement = getTagsValuesElement();
     if (tagInputElement === null) {
-        if (getCurrentQueryId() !== -1) {
+        if (getCurrentQueryId() !== 0) {
             return getCurrentVersionQuery()._tags;
         } else {
             return [];

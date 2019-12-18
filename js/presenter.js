@@ -49,7 +49,7 @@ function setQueryInputsNonEditable() {
 }
 
 function setFormClearForNewQuery() {
-    setCurrentQueryId(-1);
+    setCurrentQueryId(0);
     setCurrentVersion(-1);
     setQueryInputsEditable();
     getQueryNameField().value = "";
