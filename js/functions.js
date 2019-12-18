@@ -233,7 +233,6 @@ function parseHeaderDataForTable(header) {
         let newHeader = {};
         newHeader["title"] = header[i];
         newHeader["field"] = header[i];
-        newHeader["editor"] = "input";
         array.push(newHeader);
     }
     return array;
