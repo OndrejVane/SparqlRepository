@@ -104,15 +104,20 @@ function setTagsEditable(isEditable) {
  * enable Next and Previous bttuon.
  */
 function handleNextAndPrevButton() {
+    log("Handle next and prev");
     if (hasPrevVersion()) {
+        log("Has prev version TRUE");
         setPrevButtonEnable();
     } else {
+        log("Has prev version FALSE");
         setPrevButtonDisabled();
     }
 
     if (hasNextVersion()) {
+        log("Has next version TRUE");
         setNextButtonEnable()
     } else {
+        log("Has next version FALSE");
         setNextButtonDisable();
     }
 }

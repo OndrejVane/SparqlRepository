@@ -163,7 +163,9 @@ Vytvořená práce splňuje požadavky zadání. Při tvorbě aplikace jsme se s
 		\item  \textbf{Problém:} Pokud je něco jiného [např. 2] ve web storage, váš program to zřejmě také čte a padne na exception [1]. V takovém stavu je možné vytvářet nové query, ale nejde používat uložené.
 		Zároveň volba názvu klíče (int od 1) je poměrně nebezpečná. Doporučoval bych změnu alespoň na queryXXX, kde X je ten int, nebo uložit pouze jeden klíč a až ve value rozlišovat jednotlivé query.
 		\\
-		\textbf{Řešení:} TODOTODOTODOTODOTODOTODO
+		\textbf{Řešení:} Názvy klíčů byly přejmenovány z přirozených čísel od 1 na řetězce \textit{query\_} následované přirozeným číslem od 1, které odpovídá id dotazu. Např. \textit{query\_1}, \textit{query\_2}.
+		\\
+		\url{https://github.com/OndrejVane/SparqlRepository/issues/30}
 		\item  \textbf{Problém:} V případě chyby query syntaxe, ale možná i jindy, se sice error vypíše do konzole, ale na samotné stránce není ani info o chybovém stavu, ani jeho popis. Bylo by dobré dodělat, klidně i jen vložením jako obyčejný text ideálně někam nad query result a pod send query button.
 		\\
 		\textbf{Řešení:} Pokud dojde k nějaké chybě při odesílání dotazu na endpoint, tak se chybová zpráva vypíše pod ovládací tlačítka s prefixem Error message.\\ \url{https://github.com/OndrejVane/SparqlRepository/issues/32}

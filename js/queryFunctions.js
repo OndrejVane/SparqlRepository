@@ -34,47 +34,19 @@ function incrementId() {
 function addNewVersion() {
     var currId = window.localStorage.getItem("currentId");
     var value = window.localStorage.getItem(currId);
+
     var parsed = JSON.parse(value);
     var arr = jsonToArray(parsed.queries);
 
     var lastVersion = parsed.lastVersion;
     lastVersion++;
 
-    arr.push(new Query(currId, getQueryName(), getQueryDescription(), getEndPointUrl(), getTagsArray(), getSparqlQuery(), lastVersion));
+    var tmp = currId.split("_");
 
-    window.localStorage.setItem("query_" + currId, JSON.stringify({lastVersion: lastVersion, queries: arr}));
+    arr.push(new Query(tmp[1], getQueryName(), getQueryDescription(), getEndPointUrl(), getTagsArray(), getSparqlQuery(), lastVersion));
 
-    /*for (i = 0; i < arr.length; i++) {
-        //tmp = JSON.parse(arr[i])
-        //window.localStorage.setItem("test", arr[i].desc)
-        window.console.log(arr[i]._tags);
-    }*/
-    //window.localStorage.setItem("test", arr.queries.toString())
-    //window.console.log(arr[0]);
+    window.localStorage.setItem("query_" + tmp[1], JSON.stringify({lastVersion: lastVersion, queries: arr}));
 }
-
-/*function deleteVersion() {
-    //TODO: kontrola zda nejake query zobrazeno, zmenit ziskani currentVersion, kdyz smazemo posledni version -> smazat cely zaznam
-
-    var currId = window.localStorage.getItem("currentId");
-    var currVer = window.localStorage.getItem("currentVersion");
-    var value = window.localStorage.getItem(currId);
-    var parsed = JSON.parse(value);
-    var arr = jsonToArray(parsed.queries);
-    var index;
-    var lastVersion = parsed.lastVersion;
-
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i]._version == currVer) {
-            index = i;
-            break;
-        }
-    }
-
-    arr.splice(index, 1);
-
-    window.localStorage.setItem(currId, JSON.stringify({lastVersion: lastVersion, queries: arr}));
-}*/
 
 /**
  *
@@ -89,18 +61,6 @@ function jsonToArray(json) {
     });
     return result;
 }
-
-/*var currQuery;
-
-function getSearchedQuery() {
-    //TODO: pres Sidebar - zobrazit query (vyplnit pole/vzhled), zmenit currentId
-
-    var currId = window.localStorage.getItem("currentId");
-    var value = window.localStorage.getItem(currId);
-    var parsed = JSON.parse(value);
-
-    currQuery = parsed; //anebo se vzdy dotazovat na db
-}*/
 
 /**
  *
@@ -158,7 +118,7 @@ function hasPrevVersion() {
     var minDiff = 10000;
     var minDiffIndex = -1;
 
-    if (arr.length > 1) { //mozna neni treba
+    if (arr.length > 1) {
         for (i = 0; i < arr.length; i++) {
             var temp = currVer - arr[i]._version;
             if (temp > 0 && temp < minDiff) {
@@ -167,7 +127,7 @@ function hasPrevVersion() {
             }
         }
 
-        if (minDiffIndex === -1) { //mozna neni treba kdyz kontrola na frontendu
+        if (minDiffIndex === -1) {
             return false;
         } else {
             return true;
@@ -182,12 +142,10 @@ function hasPrevVersion() {
  * @returns {Query|null}
  */
 function getNextVersion() {
-    // sediva tlačítko -> nastaveno na frontendu
 
-    //var currId = window.localStorage.getItem("currentId");
     var currId = getCurrentQueryId();
     var currVer = window.localStorage.getItem("currentVersion");
-    var value = window.localStorage.getItem(currId);
+    var value = window.localStorage.getItem("query_" + currId);
     if (value === null){
         return false;
     }
@@ -197,7 +155,7 @@ function getNextVersion() {
     var minDiff = 10000;
     var minDiffIndex = -1;
 
-    if (arr.length > 1) { //mozna neni treba
+    if (arr.length > 1) {
         for (i = 0; i < arr.length; i++) {
             var temp = arr[i]._version - currVer;
             if (temp > 0 && temp < minDiff) {
@@ -206,10 +164,9 @@ function getNextVersion() {
             }
         }
 
-        if (minDiffIndex == -1) { //mozna neni treba kdyz kontrola na frontendu
+        if (minDiffIndex == -1) {
             return null;
         } else {
-            //window.log(arr[minDiffIndex]);
             window.localStorage.setItem("currentVersion", arr[minDiffIndex]._version);
             return arr[minDiffIndex];
         }
@@ -219,12 +176,10 @@ function getNextVersion() {
 }
 
 function hasNextVersion() {
-    // sediva tlačítko -> nastaveno na frontendu
 
-    //var currId = window.localStorage.getItem("currentId");
     var currId = getCurrentQueryId();
     var currVer = window.localStorage.getItem("currentVersion");
-    var value = window.localStorage.getItem(currId);
+    var value = window.localStorage.getItem("query_" + currId);
     if (value === null){
         return false;
     }
@@ -234,7 +189,7 @@ function hasNextVersion() {
     var minDiff = 10000;
     var minDiffIndex = -1;
 
-    if (arr.length > 1) { //mozna neni treba
+    if (arr.length > 1) {
         for (i = 0; i < arr.length; i++) {
             var temp = arr[i]._version - currVer;
             if (temp > 0 && temp < minDiff) {
@@ -243,7 +198,7 @@ function hasNextVersion() {
             }
         }
 
-        if (minDiffIndex == -1) { //mozna neni treba kdyz kontrola na frontendu
+        if (minDiffIndex == -1) {
             return false;
         } else {
             return true;
@@ -266,7 +221,7 @@ function getAllQueries() {
             if (k != "id" && k != "currentId" && k != "currentVersion") { //upravit pokud pridame globalni promennou
                 //result.push(getQueryById(k));
                 var tmp = k.split("_");
-                if (tmp[0] = "query" && Number.isInteger(tmp[1])){
+                if (tmp[0] = "query"){
                     result.push(getQueryById(tmp[1]));
                 }
             }
@@ -282,6 +237,7 @@ function getAllQueries() {
  * @returns {Query|null}
  */
 function getQueryById(queryId) {
+    log(queryId);
     var value = window.localStorage.getItem("query_" + queryId);
     log("value: " + value);
     if (value === null) {
@@ -375,7 +331,7 @@ function getAllQueriesForExport() {
     let queries = "";
 
     for (let i = 0; i < id; i++) {
-        let query = localStorage.getItem(i.toString());
+        let query = localStorage.getItem("query_" + i.toString());
         if (query) {
             queries = queries + i + "=" + query + endLineChar + newLineChar;
         }

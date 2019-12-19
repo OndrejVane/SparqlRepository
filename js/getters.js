@@ -43,7 +43,7 @@ function getToastMessage() {
 function getCurrentQueryId() {
     var currentIdText = window.localStorage.getItem("currentId");
     var tmp = currentIdText.split("_");
-    if (tmp[0] = "query" && Number.isInteger(tmp[1])){
+    if (tmp[0] = "query"){
         return parseInt(tmp[1]);
     }
     return 0;

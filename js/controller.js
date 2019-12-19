@@ -83,6 +83,7 @@ function saveNewVersionOfQuery() {
     setCurrentVersion(currentQuery._version);
     setViewMode();
     showToast(SAVED_VERSION_SUCCESS);
+    handleNextAndPrevButton();
 }
 
 function onQueryChange() {

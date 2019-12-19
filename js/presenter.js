@@ -59,6 +59,8 @@ function setFormClearForNewQuery() {
     setEditButtonDisabled();
     setSaveButtonDisabled();
     addTitleToTheCardHeader(CARD_HEADER_NEW);
+    setPrevButtonDisabled();
+    setNextButtonDisable();
 }
 
 function showAllQueries() {
